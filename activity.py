@@ -103,7 +103,7 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     if plotname:
         plot_activities(plotname, reaction_list, times, activities, total_activity, t_i, t_ci, t_cf, False)
 
-    return counts, scram_act
+    return counts, scram_act, count_act
 
 
 if __name__ == '__main__':
