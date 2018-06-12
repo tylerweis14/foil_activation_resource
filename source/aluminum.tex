@@ -1,0 +1,49 @@
+\newpage
+
+\section*{ Aluminum }
+
+Power Level: 250 kW(th) \\
+Time at Power: 3600 s \\
+Wait Time: 1800 s \\
+Total Activity at Removal: 9.62e+02 $\mu Ci$
+
+\begin{table*}[h]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c|c| }
+ \hline
+ Position & Mass $mg$ & Start Counting $s$ & Counting Time $s$ & Counting Activity $\mu Ci$ \\
+ \hline 
+ 1 & 0.3 & 5400 & 1800 & 1.92e-01\\ 
+\hline
+ 2 & 0.2 & 7200 & 1800 & 1.75e-02\\ 
+\hline
+ 3 & 0.1 & 9000 & 1800 & 3.83e-03\\ 
+\hline
+ 4 & 0.2 & 10800 & 1800 & 6.44e-03\\ 
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{figure}[!ht]
+   \centering
+   \subfloat[][Position \#1]{\includegraphics[width=.4\textwidth]{source/plot/al1_activity}}\quad
+   \subfloat[][ ($n,p$) Reaction Rate]{\includegraphics[width=.4\textwidth]{source/plot/al_n,p}}\\ 
+   \subfloat[][ ($n,\alpha$) Reaction Rate]{\includegraphics[width=.4\textwidth]{source/plot/al_n,alpha}}\quad 
+   \subfloat[][ ($n,\gamma$) Reaction Rate]{\includegraphics[width=.4\textwidth]{source/plot/al_n,gamma}}\\ 
+
+\end{figure}
+
+\begin{table*}[h]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c|c| }
+ \hline
+ Reaction & T$_{1/2}$ & ROI (eV) & Important Gammas (keV) \\
+ \hline 
+ ($n,p$) &  9.5 m & 3.42e+06, 9.14e+06 & 180(0.007), 840(0.7), 1013(0.3) \\ 
+\hline
+ ($n,\alpha$) & 15.0 h & 6.46e+06, 1.17e+07 & 1369(1), 2754(1) \\ 
+\hline
+ ($n,\gamma$) &  2.2 m & 2.82e-03, 4.15e-01 & 1780(1) \\ 
+\hline
+\end{tabular}
+\end{table*}
