@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 from scipy.integrate import odeint, quad
 from scipy.interpolate import interp1d
+from scipy.optimize import fsolve
 
 from cross_sections import foils, Cd
 from plotting import plot_activities, plot_xs
@@ -95,6 +96,17 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
 
     # print some info
     total_act_fun = interp1d(times, total_activity, bounds_error=False, fill_value=0)
+
+    # calculate 90% time
+    max_activity = np.max(total_activity)
+    rel_activity = total_activity / max_activity
+    rel_act_fun = interp1d(times, rel_activity, bounds_error=False, fill_value=0)
+
+    def cutoff_calc(t):
+        return rel_act_fun(t) - 99
+    # t_cut = fsolve(cutoff_calc, 600)
+    # print('Cutoff Time:  {}'.format(t_cut))
+
     scram_act = total_act_fun(t_i)
     count_act = total_act_fun(t_ci)
     print('Counting Activity:  {:4.2e} uCi'.format(float(count_act)))

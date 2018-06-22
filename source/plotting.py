@@ -18,7 +18,7 @@ def plot_activities(name, reaction_list, t, activities, total_activity, t_i, t_c
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Activity ($\mu$Ci)')
     ax.set_yscale('log')
-    ax.set_ylim(1E-5, 1E3)
+    ax.set_ylim(1E-5, np.max(activities) * 1.3)
 
     if bars:
         # vertical calculate bars
