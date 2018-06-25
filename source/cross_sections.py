@@ -81,6 +81,149 @@ Al['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Al['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Al['reactions']['n,gamma']['plotname'] = 'al_n,gamma'
 
+# scandium
+Sc = {}
+Sc['M'] = 44.955910  # g/mol
+Sc['rho'] = 2.985  # g/cm3
+Sc['reactions'] = {}
+
+# Sc45(n,g)Sc46
+Sc['reactions']['n,gamma'] = {}
+f, r = extract('21-Sc-45(n,&gamma;)')
+Sc['reactions']['n,gamma']['func'] = f
+Sc['reactions']['n,gamma']['region'] = r
+Sc['reactions']['n,gamma']['roi'] = -1,1 # computed
+Sc['reactions']['n,gamma']['roi_cd'] = -1, 1 # initial guess
+Sc['reactions']['n,gamma']['halflife'] = 43.72 *60 * 60  # s
+Sc['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
+Sc['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
+Sc['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
+
+
+# titanium
+Ti = {}
+Ti['M'] = 47.867  # g/mol
+Ti['rho'] = 4.506  # g/cm3
+Ti['reactions'] = {}
+
+# Ti48(n,p)Sc48
+Ti['reactions']['n,p'] = {}
+f, r = extract('22-Ti-48(n,p)')
+Ti['reactions']['n,p']['func'] = f
+Ti['reactions']['n,p']['region'] = r
+Ti['reactions']['n,p']['roi'] = -1,1
+Ti['reactions']['n,p']['roi_cd'] = -1,1  # initial guess
+Ti['reactions']['n,p']['halflife'] = 43.7 * 60 * 60 #s
+Ti['reactions']['n,p']['label'] = r'($n,p$)'
+Ti['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
+Ti['reactions']['n,p']['plotname'] = 'ti_n,p'
+
+#TODO Ti46,47
+
+# iron
+Fe = {}
+Fe['M'] = 55.845  # g/mol
+Fe['rho'] = 7.874  # g/cm3
+Fe['reactions'] = {}
+
+# Fe56(n,p)Mn56
+Fe['reactions']['n,p'] = {}
+f, r = extract('26-Fe-56(n,p)')
+Fe['reactions']['n,p']['func'] = f
+Fe['reactions']['n,p']['region'] = r
+Fe['reactions']['n,p']['roi'] = -1,1
+Fe['reactions']['n,p']['roi_cd'] = -1,1  # initial guess
+Fe['reactions']['n,p']['halflife'] = 2.5789 * 60 * 60 #s
+Fe['reactions']['n,p']['label'] = r'($n,p$)'
+Fe['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
+Fe['reactions']['n,p']['plotname'] = 'fe_n,p'
+
+# Fe58(n,g)Fe59
+Fe['reactions']['n,gamma'] = {}
+f, r = extract('26-Fe-58(n,&gamma;)')
+Fe['reactions']['n,gamma']['func'] = f
+Fe['reactions']['n,gamma']['region'] = r
+Fe['reactions']['n,gamma']['roi'] = -1,1 # computed
+Fe['reactions']['n,gamma']['roi_cd'] = -1, 1 # initial guess
+Fe['reactions']['n,gamma']['halflife'] = 44.6 * 24 * 60 * 60 # s
+Fe['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
+Fe['reactions']['n,gamma']['erg'] = [(1,1)]  # keV (placeholder)
+Fe['reactions']['n,gamma']['plotname'] = 'fe_n,gamma'
+
+#TODO Fe54
+
+# nickel
+Ni = {}
+Ni['M'] = 58.6934  # g/mol
+Ni['rho'] = 8.908  # g/cm3
+Ni['reactions'] = {}
+
+# Ni58(n,p)Co58
+Ni['reactions']['n,p'] = {}
+f, r = extract('28-Ni-58(n,p)')
+Ni['reactions']['n,p']['func'] = f
+Ni['reactions']['n,p']['region'] = r
+Ni['reactions']['n,p']['roi'] = -1,1
+Ni['reactions']['n,p']['roi_cd'] = -1,1  # initial guess
+Ni['reactions']['n,p']['halflife'] = 70.86 * 24 * 60 * 60 #s
+Ni['reactions']['n,p']['label'] = r'($n,p$)'
+Ni['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
+Ni['reactions']['n,p']['plotname'] = 'ni_n,p'
+
+
+# copper
+Cu = {}
+Cu['M'] = 63.546  # g/mol
+Cu['rho'] = 8.96  # g/cm3
+Cu['reactions'] = {}
+
+# Cu63(n,g)Cu64
+Cu['reactions']['n,gamma'] = {}
+f, r = extract('29-Cu-63(n,&gamma;)')
+Cu['reactions']['n,gamma']['func'] = f
+Cu['reactions']['n,gamma']['region'] = r
+Cu['reactions']['n,gamma']['roi'] = -1,1 # computed
+Cu['reactions']['n,gamma']['roi_cd'] = -1, 1 # initial guess
+Cu['reactions']['n,gamma']['halflife'] = 12.70 * 60 * 60 # s
+Cu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
+Cu['reactions']['n,gamma']['erg'] = [(1,1)]  # keV (placeholder)
+Cu['reactions']['n,gamma']['plotname'] = 'cu_n,gamma'
+
+# zinc
+Zn = {}
+Zn['M'] = 65.38  # g/mol
+Zn['rho'] = 7.14  # g/cm3
+Zn['reactions'] = {}
+
+# Zn64(n,p)Cu64
+Zn['reactions']['n,p'] = {}
+f, r = extract('30-Zn-64(n,p)')
+Zn['reactions']['n,p']['func'] = f
+Zn['reactions']['n,p']['region'] = r
+Zn['reactions']['n,p']['roi'] = -1,1
+Zn['reactions']['n,p']['roi_cd'] = -1,1  # initial guess
+Zn['reactions']['n,p']['halflife'] = 12.70 * 60 * 60 # s
+Zn['reactions']['n,p']['label'] = r'($n,p$)'
+Zn['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
+Zn['reactions']['n,p']['plotname'] = 'zn_n,p'
+
+# zirconium
+Zr = {}
+Zr['M'] = 91.224  # g/mol
+Zr['rho'] = 6.52  # g/cm3
+Zr['reactions'] = {}
+
+# Zr90(n,2n)Zr89
+Zr['reactions']['n,2n'] = {}
+f, r = extract('40-Zr-90(n,2n)')
+Zr['reactions']['n,2n']['func'] = f
+Zr['reactions']['n,2n']['region'] = r
+Zr['reactions']['n,2n']['roi'] = -1,1 # computed
+Zr['reactions']['n,2n']['roi_cd'] = -1, 1 # initial guess
+Zr['reactions']['n,2n']['halflife'] = 78.41 *60 * 60  # s
+Zr['reactions']['n,2n']['label'] = r'($n,2n$)'
+Zr['reactions']['n,2n']['erg'] = [(1, 1780)]  # keV (placeholder)
+Zr['reactions']['n,2n']['plotname'] = 'zr_n,2n'
 
 # rhodium
 Rh = {}
@@ -215,3 +358,11 @@ foils['Rh'] = Rh
 foils['In'] = In
 foils['Au'] = Au
 foils['U'] = U
+foils['Sc'] = Sc
+foils['Ti'] = Ti
+foils['Fe'] = Fe
+foils['Ni'] = Ni
+foils['Cu'] = Cu
+foils['Zn'] = Zn
+foils['Zr'] = Zr
+
