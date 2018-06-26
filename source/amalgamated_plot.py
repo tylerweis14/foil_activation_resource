@@ -21,14 +21,14 @@ fig = plt.figure(101, figsize=(8, 4.5))
 ax1 = fig.add_subplot(111)
 ax1.set_xscale('log')
 ax1.set_yscale('log')
-ax1.set_xlim(1E-5, 1E8)
-ax1.set_ylim(1E1, 1E13)
+ax1.set_xlim(1E-5, 1E9)
+ax1.set_ylim(1E2, 1E14)
 ax1.set_xlabel('Energy (eV)')
 ax1.set_ylabel('$\Phi$ ($cm^{-2}s^{-1}$)')
 
 ax2 = ax1.twinx()
 ax2.set_yscale('log')
-ax2.set_xlim(1E-5, 1E8)
+ax2.set_xlim(1E-5, 1E9)
 ax2.set_ylim(1E-4, 1E5)
 ax2.set_ylabel('$\sigma$ ($barns$)')
 
@@ -44,13 +44,23 @@ reactions = [foils['Au']['reactions']['n,gamma'],
              foils['In']['reactions']['n,gamma'],
              foils['Al']['reactions']['n,alpha'],
              foils['Rh']['reactions']['n,inelastic'],
-             foils['U']['reactions']['n,total_fission']]
+             foils['U']['reactions']['n,total_fission'],
+             foils['Cu']['reactions']['n,gamma'],
+             foils['Zn']['reactions']['n,p'],
+             foils['Zr']['reactions']['n,2n'],
+             foils['Ni']['reactions']['n,p'],
+             foils['Ti']['reactions']['n,p'],
+             foils['Sc']['reactions']['n,gamma'],
+             foils['Fe']['reactions']['n,p']]
 
-foilnames = ['$^{197}$Au', '$^{115}$In', '$^{27}$Al', '$^{103}$Rh', '$^{235}$U']
+foilnames = ['$^{197}$Au', '$^{115}$In', '$^{27}$Al', '$^{103}$Rh', '$^{235}$U',
+             '$^{63}$Cu', '$^{64}$Zn','$^{90}$Zr','$^{58}$Ni','$^{48}$Ti',
+             '$^{45}$Sc', '$^{56}$Fe']
 
-colors = ['green', 'orange', 'red', 'blue', 'indigo']
-linestyles = [':', '--', '-', ':', '-.']
-heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9]) * powerscaling
+colors = ['green', 'orange', 'red', 'blue', 'indigo', 'fuchsia', 'black', 
+          'lightseagreen','slategrey', 'darkcyan', 'saddlebrown', 'lawngreen']
+linestyles = [':', '--', '-', ':', '-.', ':','--', '-',':','--','-',':']
+heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9, 1e-10,1e-2,1e-1,1e-5,1,1.5,10]) * powerscaling
 
 for i, reaction in enumerate(reactions):
     # region
