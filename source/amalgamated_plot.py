@@ -22,14 +22,14 @@ ax1 = fig.add_subplot(111)
 ax1.set_xscale('log')
 ax1.set_yscale('log')
 ax1.set_xlim(1E-5, 1E9)
-ax1.set_ylim(1E2, 1E14)
+ax1.set_ylim(1E0, 1E16)
 ax1.set_xlabel('Energy (eV)')
 ax1.set_ylabel('$\Phi$ ($cm^{-2}s^{-1}$)')
 
 ax2 = ax1.twinx()
 ax2.set_yscale('log')
 ax2.set_xlim(1E-5, 1E9)
-ax2.set_ylim(1E-4, 1E5)
+ax2.set_ylim(1E-6, 1E8)
 ax2.set_ylabel('$\sigma$ ($barns$)')
 
 # flux
@@ -51,16 +51,27 @@ reactions = [foils['Au']['reactions']['n,gamma'],
              foils['Ni']['reactions']['n,p'],
              foils['Ti']['reactions']['n,p'],
              foils['Sc']['reactions']['n,gamma'],
-             foils['Fe']['reactions']['n,p']]
+             foils['Fe']['reactions']['n,p'],
+             foils['Mg']['reactions']['n,p'],
+             foils['Mn']['reactions']['n,gamma'],
+             foils['Mo']['reactions']['n,gamma'],
+             foils['Eu']['reactions']['n,gamma'],
+             foils['Ir']['reactions']['n,gamma'],
+             foils['Lu']['reactions']['n,gamma']]
 
 foilnames = ['$^{197}$Au', '$^{115}$In', '$^{27}$Al', '$^{103}$Rh', '$^{235}$U',
              '$^{63}$Cu', '$^{64}$Zn','$^{90}$Zr','$^{58}$Ni','$^{48}$Ti',
-             '$^{45}$Sc', '$^{56}$Fe']
+             '$^{45}$Sc', '$^{56}$Fe', '$^{24}$Mg','$^{55}$Mn','$^{98}$Mo',
+             '$^{151}$Eu', '$^{191}$Ir', '$^{176}$Lu']
 
-colors = ['green', 'orange', 'red', 'blue', 'indigo', 'fuchsia', 'black', 
-          'lightseagreen','slategrey', 'darkcyan', 'saddlebrown', 'lawngreen']
-linestyles = [':', '--', '-', ':', '-.', ':','--', '-',':','--','-',':']
-heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9, 1e-10,1e-2,1e-1,1e-5,1,1.5,10]) * powerscaling
+colors = ['green', 'gold', 'red', 'blue', 'indigo', 'fuchsia', 'black', 
+          'coral','slategrey', 'darkcyan', 'blueviolet', 'lawngreen',
+          'lightsalmon', 'maroon', 'cyan','papayawhip', 'chocolate',
+          'darkkhaki']
+linestyles = [':', '--', '-', ':', '-.', ':','--', '-',':','-.','-',':','--',
+              '-.',':','--','-.']
+heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9, 1e-10,1e-2,1e-1,1e-5,1,
+                    1.5,10,70,100,10,1.5e-1,1e-11,1e-12]) * powerscaling
 
 for i, reaction in enumerate(reactions):
     # region

@@ -253,7 +253,7 @@ if False or run_all:
         print('Right: {:6.4e}'.format(right))
 
 # iron
-if True or run_all:
+if False or run_all:
     for xs in foils['Fe']['reactions'].values():
         print('\n' + xs['plotname'])
         left, right = roi(xs, phi, no_cd, False, True)
@@ -275,3 +275,68 @@ if False or run_all:
         left, right = roi(xs, phi, no_cd, False, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
+
+# magnesium
+if False or run_all:
+    for xs in foils['Mg']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+        
+# tungsten
+if False or run_all:
+    for xs in foils['W']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+
+# magnanese
+if False or run_all:
+    for xs in foils['Mn']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+        
+# molybdenum
+if False or run_all:
+    for xs in foils['Mo']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+
+# europium
+if False or run_all:
+    for xs in foils['Eu']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+
+# iridium
+if False or run_all:
+    for xs in foils['Ir']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+
+# dyspropium
+if False or run_all:
+    for xs in foils['Dy']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+
+# lutetium
+if True or run_all:
+    for xs in foils['Lu']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, False, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+        
