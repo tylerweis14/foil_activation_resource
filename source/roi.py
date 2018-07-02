@@ -6,7 +6,7 @@ from scipy.integrate import quad
 from scipy.optimize import fsolve
 
 from cross_sections import foils, Cd
-from flux_spectrum import Flux
+from triga_spectrum import triga_spectrum
 
 ###############################################################################
 #                               nice plotting
@@ -25,8 +25,8 @@ rcParams.update({'figure.autolayout': True})
 #                               flux
 ###############################################################################
 # flux
-flux = Flux(1/0.833)
-phi = flux.evaluate
+phi = triga_spectrum
+
 
 #
 total_phi = 0
@@ -84,13 +84,6 @@ def roi(sigma, phi, cd, cd_cov=False, recalculate=False):
         roi = sigma['roi_cd']
         plotname += '_cd'
 
-    # find where zero
-    # e = np.geomspace(region[0], region[1], 1000)
-    # xss = xs(e)
-    # fw_xs = (xs(e) * phi(e) * cd(e)) / total_phi
-
-    # calc 5 95
-    # find total rr
     def reaction_rate(e, phi, sigma, cd_fun):
         return sigma(e) * phi(e) * cd_fun(e)
 

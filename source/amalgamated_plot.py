@@ -4,6 +4,7 @@ from matplotlib import rc, rcParams
 
 from cross_sections import foils, Cd
 from flux_spectrum import Flux
+from triga_spectrum import triga_spectrum
 
 # nice plotting
 rc('font', **{'family': 'serif'})
@@ -36,8 +37,7 @@ ax2.set_ylabel('$\sigma$ ($barns$)')
 flux = Flux(1/0.833)
 phi = flux.evaluate
 x = np.logspace(-5, 8, 1000)
-powerscaling = (1/100) * 4E12 * (1 + 1/0.833) * 100  # flux 100 kW(th)
-y = phi(x) * powerscaling
+y = triga_spectrum(x)
 ax1.plot(x, y, 'k', label='$\Phi$')
 
 reactions = [foils['Au']['reactions']['n,gamma'],
