@@ -161,7 +161,7 @@ run_all = False
 if False or run_all:
     for xs in foils['Au']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, False)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -169,7 +169,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['In']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, False)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -177,7 +177,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Rh']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, False)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -185,7 +185,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Al']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, False)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -193,7 +193,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Au']['reactions'].values():
         print('\n' + xs['plotname'] + '  (Cd)')
-        left, right = roi(xs, phi, ya_cd, True, False)
+        left, right = roi(xs, phi, ya_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -201,7 +201,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['In']['reactions'].values():
         print('\n' + xs['plotname'] + '  (Cd)')
-        left, right = roi(xs, phi, ya_cd, True, False)
+        left, right = roi(xs, phi, ya_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -209,15 +209,15 @@ if False or run_all:
 if False or run_all:
     for xs in foils['U']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
         
 # copper
-if False or run_all:
+if True or run_all:
     for xs in foils['Cu']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -225,7 +225,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Ti']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
         
@@ -233,7 +233,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Zn']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -241,7 +241,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Zr']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -249,7 +249,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Fe']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -257,7 +257,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Sc']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -265,7 +265,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Ni']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -273,23 +273,24 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Mg']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
-        
+
+'''
 # tungsten
 if False or run_all:
     for xs in foils['W']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
-
+'''
 # magnanese
 if False or run_all:
     for xs in foils['Mn']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
         
@@ -297,7 +298,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Mo']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -305,7 +306,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Eu']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -313,7 +314,7 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Ir']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
@@ -321,15 +322,30 @@ if False or run_all:
 if False or run_all:
     for xs in foils['Dy']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
 
 # lutetium
-if True or run_all:
+if False or run_all:
     for xs in foils['Lu']['reactions'].values():
         print('\n' + xs['plotname'])
-        left, right = roi(xs, phi, no_cd, False, True)
+        left, right = roi(xs, phi, no_cd, True, True)
         print('Left: {:6.4e}'.format(left))
         print('Right: {:6.4e}'.format(right))
         
+# chromium
+if False or run_all:
+    for xs in foils['Cr']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, True, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
+        
+# calcium
+if False or run_all:
+    for xs in foils['Ca']['reactions'].values():
+        print('\n' + xs['plotname'])
+        left, right = roi(xs, phi, no_cd, True, True)
+        print('Left: {:6.4e}'.format(left))
+        print('Right: {:6.4e}'.format(right))
