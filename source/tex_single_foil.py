@@ -17,7 +17,7 @@ def time_change(t):
         return '{:4.1f} s'.format(t)
 
 
-def write_single_foil(title, power, t_irrad, t_wait, t_count, A_rem, A_count, masses, foilkey, cd=False):
+def write_single_foil(title, power, t_irrad, t_wait, t_count, A_rem, A_count, masses, foilkey, counts, cd=False):
     '''
     Do something.
     '''
@@ -31,7 +31,7 @@ def write_single_foil(title, power, t_irrad, t_wait, t_count, A_rem, A_count, ma
     irrad_s = ''
     for i in range(4):
         t = t_irrad + t_wait + t_count * i
-        irrad_s += '\n {} & {} & {} & {} & {:4.2e}\\\\ \n'.format(i+1, masses[i], t, t_count, A_count[i])
+        irrad_s += '\n {} & {} & {} & {} & {:4.2e} & {:4.2e}\\\\ \n'.format(i+1, masses[i], t, t_count, A_count[i], counts[i])
         irrad_s += '\\hline'
 
     cdplot_s = ''

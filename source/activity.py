@@ -8,9 +8,11 @@ from scipy.optimize import fsolve
 from cross_sections import foils, Cd
 from plotting import plot_activities, plot_xs
 from flux_spectrum import Flux
+from triga_spectrum import nodal_spectra
+from hpge import hpge_efficiency
 
 
-def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickness=0.05, plotname='decay.png'):
+def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickness=0.05, plotname='decay.png', node=1):
     '''
     Stuff.
     '''
@@ -34,10 +36,10 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
 
     # find normalized reaction rates
     # load in spectrum
-    phi = Flux(1/0.833)
+    phi = nodal_spectra[node]
 
     def reaction_rate(e, phi, sigma, cd_fun):
-        return (sigma(e) * 1E-24) * phi.evaluate(e) * cd_fun(e)
+        return (sigma(e) * 1E-24) * phi(e) * cd_fun(e)
 
     if cd_covered:
         def cd(e):
@@ -54,20 +56,19 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     total_phi = 0
     e = np.logspace(-5, 9, 100)
     for i in range(len(e) - 1):
-        total_phi += quad(phi.evaluate, e[i], e[i+1])[0]
+        total_phi += quad(phi, e[i], e[i+1])[0]
         for j, reaction in enumerate(reaction_list):
             R[j+1] += quad(reaction_rate, e[i], e[i+1], args=(phi, reaction['func'], cd))[0]
-    R = R / total_phi
     R[0] = 0
 
     # plot xs
-    plot_xs(reaction_names, reaction_list, phi.evaluate, cd)
+    plot_xs(reaction_names, reaction_list, phi, cd)
 
     def decay(N, t, lam, t_i, R, P, num_reactions):
         '''
         Radioactive decay.
         '''
-        phi_i = (1/100) * 4E12 * (1 + 1/0.833) * P  # flux at a certain power
+        phi_i = 1  # flux at a certain power
 
         # flux info
         if t < t_i:
@@ -85,10 +86,11 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     activities = decay_constants * N
 
     # counting
-    counts = list(np.zeros(num_reactions))  # fix this this is garbage wow
-    for i, reaction in enumerate(reaction_list):
-        act_fun = interp1d(times, activities[:, i+1], bounds_error=False, fill_value=0)
-        counts[i] = (reaction['erg'], quad(act_fun, t_ci, t_cf)[0])
+    act_fun = interp1d(times, activities[:, 1], bounds_error=False, fill_value=0)
+    raw = quad(act_fun, t_ci, t_cf)[0]
+    detected = raw * foil['principle_br']
+    detected *= hpge_efficiency(foil['principle_erg'])
+    counts = detected
 
     # Bq to uCi
     activities *= (1/3.7E10) * 1E6

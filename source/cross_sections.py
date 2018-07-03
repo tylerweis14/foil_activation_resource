@@ -323,6 +323,9 @@ Rh['reactions']['n,inelastic']['plotname'] = 'rh_n,inelastic'
 In = {}
 In['M'] = 114.818  # g/mol
 In['rho'] = 7.31  # g/cm3
+In['principle'] = 'n,gamma'
+In['principle_br'] = 0.8
+In['principle_erg'] = 1293
 In['reactions'] = {}
 
 In['reactions']['n,gamma'] = {}
@@ -443,6 +446,9 @@ W['reactions']['n,gamma']['plotname'] = 'w_n,gamma'
 Au = {}
 Au['M'] = 196.96657  # g/mol
 Au['rho'] = 19.32  # g/cm3
+Au['principle'] = 'n,gamma'
+Au['principle_br'] = 0.95
+Au['principle_erg'] = 412
 Au['reactions'] = {}
 
 Au['reactions']['n,gamma'] = {}
