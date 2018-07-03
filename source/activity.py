@@ -58,6 +58,9 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     for i in range(len(e) - 1):
         total_phi += quad(phi, e[i], e[i+1])[0]
         for j, reaction in enumerate(reaction_list):
+            if reaction_names[j] == foil['principle']:
+                principle_index = j + 1
+                reaction['halflife']
             R[j+1] += quad(reaction_rate, e[i], e[i+1], args=(phi, reaction['func'], cd))[0]
     R[0] = 0
 
@@ -86,7 +89,7 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     activities = decay_constants * N
 
     # counting
-    act_fun = interp1d(times, activities[:, 1], bounds_error=False, fill_value=0)
+    act_fun = interp1d(times, activities[:, principle_index], bounds_error=False, fill_value=0)  # TODO: fix this bro. need reaction specific num
     raw = quad(act_fun, t_ci, t_cf)[0]
     detected = raw * foil['principle_br']
     detected *= hpge_efficiency(foil['principle_erg'])

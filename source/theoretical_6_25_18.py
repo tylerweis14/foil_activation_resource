@@ -1,69 +1,26 @@
+'''
+Theoretical Results for the 6_25_18 irradiation.
+'''
 from activity import activity_calc
 from cross_sections import foils
 import numpy as np
 from tex_single_foil import write_single_foil
-from foil import Foil
+from wand import Wand
+import pickle
 
 
-cases = [5]
-###############################################################################
-# wand object
-###############################################################################
+def run(rerun_all):
 
-
-class Wand(object):
-    '''
-    This is a wand.
-    '''
-    def __init__(self):
-        self.name = ''
-        self.mat = ''
-        self.cd = False
-        self.masses = np.array([-1, -1, -1, -1])
-        self.t_i = -1
-        self.t_w = -1
-        self.counting_time = -1
-        self.P = -1
-
-    def calc_t_f(self):
-        self.t_f = self.t_i + self.t_w + (4 * self.counting_time) + 1
-
-    def irradiate(self, write):
-        print('\n')
-        print(self.name.capitalize() + 'w/ Cadmium' if self.cd else self.name.capitalize())
-        self.calc_t_f()
-        self.removal_activity = 0
-        self.counting_activities = np.zeros(4)
-        self.counts = np.zeros(4)
-        for i, m in enumerate(self.masses):
-            t_ci = self.t_w + (i * self.counting_time)
-            t_cf = self.t_w + ((i + 1) * self.counting_time)
-            count, act_rem, act_count = activity_calc(foils[self.mat], m, self.P,
-                                                      self.t_i, t_ci, t_cf, self.t_f, self.cd,
-                                                      plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1), node=i+1)
-            self.removal_activity += act_rem
-            self.counting_activities[i] = act_count
-            self.counts[i] = count
-        print('Removal Activity:  {:4.2e}  uCi'.format(self.removal_activity))
-        if write:
-            write_single_foil(self.name, self.P, self.t_i, self.t_w, self.counting_time,
-                              self.removal_activity, self.counting_activities, self.masses,
-                              self.mat, self.counts)
-
-    def package_data(self):
+    try:
+        with open('theoretical_6_25_18.txt', 'rb') as F:
+            data = pickle.load(F)
+    except:
         data = {}
-        for i in range(1, 5):
-            data[self.mat.lower() + str(i)] = Foil(self.counts[i-1], np.sqrt(self.counts[i-1]),
-                                                   self.counting_activities[i-1], 0, self.counting_time)
-        return data
-
-
-if __name__ == '__main__':
-
     ###############################################################################
     #                                gold
     ###############################################################################
-    if 0 in cases:
+
+    if False or rerun_all:
         wand = Wand()
         wand.name = 'gold'
         wand.mat = 'Au'
@@ -73,27 +30,42 @@ if __name__ == '__main__':
         wand.t_w = 3600*24*4  # s
         wand.counting_time = 60
         wand.P = 100  # kW(th)
-        wand.irradiate()
+        wand.irradiate(False)
+        data.update(wand.package_data())
 
     ###############################################################################
     #                                indium
     ###############################################################################
-    if 1 in cases:
+    if True or rerun_all:
         wand = Wand()
         wand.name = 'indium'
         wand.mat = 'In'
         wand.cd = False
         wand.masses = np.array([1.7, 1.5, 1.4, 1.6])  # mg
         wand.t_i = 60  # s
-        wand.t_w = 7*3600 + 20*60  # s
+        wand.t_w = 8*3600 + 40*60  # s
         wand.counting_time = 60
         wand.P = 100  # kW(th)
-        wand.irradiate()
+        wand.irradiate(False)
+        data.update(wand.package_data())
 
     ###############################################################################
     #                                gold (cd)
     ###############################################################################
-    if 2 in cases:
+    if False or rerun_all:
+        wand = Wand()
+        wand.name = 'gold'
+        wand.mat = 'Au'
+        wand.cd = True
+        wand.masses = np.array([2.5, 2.7, 3.2, 2.5])  # mg
+        wand.t_i = 60  # s
+        wand.t_w = 3600*1  # s
+        wand.counting_time = 60
+        wand.P = 100  # kW(th)
+        wand.irradiate(False)
+        data.update(wand.package_data())
+
+    if False or rerun_all:
         print('\n')
         name = 'gold'
         print('{} w/ Cadmium'.format(name.capitalize()))
@@ -121,7 +93,7 @@ if __name__ == '__main__':
     ###############################################################################
     #                                indium (cd)
     ###############################################################################
-    if 3 in cases:
+    if False or rerun_all:
         print('\n')
         name = 'indium'
         print('{} w/ Cadmium'.format(name.capitalize()))
@@ -149,14 +121,14 @@ if __name__ == '__main__':
     ###############################################################################
     #                               rhodium
     ###############################################################################
-    if 4 in cases:
+    if False or rerun_all:
         wand = Wand()
         wand.name = 'rhodium'
         wand.mat = 'Rh'
         wand.cd = False
         wand.masses = np.array([0.7, 0.55, .5, .55])  # mg
         wand.t_i = 60  # s
-        wand.t_w = 3600*1  # s
+        wand.t_w = 3600 * 1  # s
         wand.counting_time = 600
         wand.P = 100  # kW(th)
         wand.irradiate()
@@ -164,7 +136,7 @@ if __name__ == '__main__':
     ###############################################################################
     #                              aluminum
     ###############################################################################
-    if 5 in cases:
+    if False or rerun_all:
         wand = Wand()
         wand.name = 'aluminum'
         wand.mat = 'Al'
@@ -174,20 +146,15 @@ if __name__ == '__main__':
         wand.t_w = 354870  # s
         wand.counting_time = 3600
         wand.P = 100  # kW(th)
-        wand.irradiate()
+        wand.irradiate(False)
+        data.update(wand.package_data())
 
-    ###############################################################################
-    #                              uranium
-    ###############################################################################
+    # dump data
+    with open('theoretical_6_25_18.txt', 'wb') as F:
+        pickle.dump(data, F)
 
-    if 6 in cases:
-        wand = Wand()
-        wand.name = 'uranium'
-        wand.mat = 'U'
-        wand.cd = False
-        wand.masses = np.array([5.0, 4.35, 4.30, 4.37])  # mg
-        wand.t_i = 600  # s
-        wand.t_w = 5600  # s
-        wand.counting_time = 600
-        wand.P = 100  # kW(th)
-        wand.irradiate()
+if __name__ == '__main__':
+    run(False)
+
+with open('theoretical_6_25_18.txt', 'rb') as F:
+    data = pickle.load(F)
