@@ -60,7 +60,10 @@ Mg['reactions']['n,p']['plotname'] = 'mg_n,p'
 # aluminum
 Al = {}
 Al['M'] = 26.9815385  # g/mol
-Al['rho'] = 2.7  # g/cm3
+Al['rho'] = 2.7  # g/cm3 
+Al['principle'] = 'n,alpha'
+Al['principle_br'] = 1.0
+Al['principle_erg'] = 1369
 Al['reactions'] = {}
 
 # Al27(n,p)Mg27

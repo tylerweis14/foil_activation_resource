@@ -4,7 +4,7 @@ import numpy as np
 from tex_single_foil import write_single_foil
 
 
-cases = [1]
+cases = [5]
 ###############################################################################
 # wand object
 ###############################################################################
@@ -37,8 +37,8 @@ class Wand(object):
         for i, m in enumerate(self.masses):
             t_ci = self.t_w + (i * self.counting_time)
             t_cf = self.t_w + ((i + 1) * self.counting_time)
-            count, act_rem, act_count = activity_calc(foils[mat], m, self.P, self.t_i, t_ci, t_cf, self.t_f,
-                                                       cd_cov, plotname='plot/{}{}_activity.png'.format(mat.lower(), i + 1), node=i+1)
+            count, act_rem, act_count = activity_calc(foils[self.mat], m, self.P, self.t_i, t_ci, t_cf, self.t_f,
+                                                       self.cd, plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1), node=i+1)
             self.removal_activity += act_rem
             self.counting_activities[i] = act_count
             self.counts[i] = count
@@ -160,7 +160,7 @@ if 5 in cases:
     wand.cd = False
     wand.masses = np.array([0.3, 0.2, 0.1, 0.2])  # mg
     wand.t_i = 3600  # s
-    wand.t_w = 3600*66  # s
+    wand.t_w = 354870  # s
     wand.counting_time = 3600
     wand.P = 100  # kW(th)
     wand.irradiate()

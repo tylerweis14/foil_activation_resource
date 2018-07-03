@@ -156,7 +156,7 @@ if test:
 
 
 # run full simulation using each foil
-run_all = False
+run_all = True
 # gold
 if False or run_all:
     for xs in foils['Au']['reactions'].values():
