@@ -1,7 +1,7 @@
 # storing the data from the 6_25_18 mpfd irradiation
 
 class Foil(object):
-    def __init__(self, peak_area, peak_error, activity, t_c)
+    def __init__(self, peak_area, peak_error, activity, counting_time):
         self.peak = peak_area
         self.peak_error = peak_error
         self.activity = activity
@@ -10,4 +10,4 @@ class Foil(object):
 
 data = {}
 data['al1'] = Foil(115.3, 14.62, -1, 3600)
-
+data['al2'] = Foil()
