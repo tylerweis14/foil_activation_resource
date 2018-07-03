@@ -50,7 +50,7 @@ Mg['reactions']['n,p'] = {}
 f, r = extract('12-Mg-24(n,p)')
 Mg['reactions']['n,p']['func'] = f
 Mg['reactions']['n,p']['region'] = r
-Mg['reactions']['n,p']['roi'] = 6.4162e+06,1.1257e+07  # computed
+Mg['reactions']['n,p']['roi'] = 6.4269e+06,1.1257e+06  # computed
 Mg['reactions']['n,p']['roi_cd'] = r  # initial guess
 Mg['reactions']['n,p']['halflife'] = 14.9590 * 60 * 60 # s
 Mg['reactions']['n,p']['label'] = r'($n,p$)'
@@ -60,7 +60,10 @@ Mg['reactions']['n,p']['plotname'] = 'mg_n,p'
 # aluminum
 Al = {}
 Al['M'] = 26.9815385  # g/mol
-Al['rho'] = 2.7  # g/cm3
+Al['rho'] = 2.7  # g/cm3 
+Al['principle'] = 'n,alpha'
+Al['principle_br'] = 1.0
+Al['principle_erg'] = 1369
 Al['reactions'] = {}
 
 # Al27(n,p)Mg27
@@ -68,7 +71,7 @@ Al['reactions']['n,p'] = {}
 f, r = extract('13-Al-27(n,p)')
 Al['reactions']['n,p']['func'] = f
 Al['reactions']['n,p']['region'] = r
-Al['reactions']['n,p']['roi'] = 3.4248e+06, 9.1383e+06  # computed
+Al['reactions']['n,p']['roi'] = 3.4385e+06, 9.2113e+06  # computed
 Al['reactions']['n,p']['roi_cd'] = 3.4248e+06, 9.1383e+06  # initial guess
 Al['reactions']['n,p']['halflife'] = 9.458 * 60  # s
 Al['reactions']['n,p']['label'] = r'($n,p$)'
@@ -80,7 +83,7 @@ Al['reactions']['n,alpha'] = {}
 f, r = extract('13-Al-27(n,&alpha;)')
 Al['reactions']['n,alpha']['func'] = f
 Al['reactions']['n,alpha']['region'] = r
-Al['reactions']['n,alpha']['roi'] = 6.4564e+06, 1.1695e+07  # computed
+Al['reactions']['n,alpha']['roi'] = 6.4773e+06, 1.0700e+07  # computed
 Al['reactions']['n,alpha']['roi_cd'] = 6.4564e+06, 1.1695e+07  # initial guess
 Al['reactions']['n,alpha']['halflife'] = 15.03 * 60 * 60  # s
 Al['reactions']['n,alpha']['label'] = r'($n,\alpha$)'
@@ -92,12 +95,30 @@ Al['reactions']['n,gamma'] = {}
 f, r = extract('13-Al-27(n,&gamma;)')
 Al['reactions']['n,gamma']['func'] = f
 Al['reactions']['n,gamma']['region'] = r
-Al['reactions']['n,gamma']['roi'] = 2.8233e-03, 4.1509e-01  # computed
+Al['reactions']['n,gamma']['roi'] = 6.6656e-03, 4.1509e+00  # computed
 Al['reactions']['n,gamma']['roi_cd'] = 2.8233e-02, 4.1509e+00  # initial guess
 Al['reactions']['n,gamma']['halflife'] = 2.246 * 60  # s
 Al['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Al['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Al['reactions']['n,gamma']['plotname'] = 'al_n,gamma'
+
+# calcium
+Ca = {}
+Ca['M'] = 40.078  # g/mol
+Ca['rho'] = 1.55  # g/cm3
+Ca['reactions'] = {}
+
+# Ca44(n,g)Ca45
+Ca['reactions']['n,gamma'] = {}
+f, r = extract('20-Ca-44(n,&gamma;)')
+Ca['reactions']['n,gamma']['func'] = f
+Ca['reactions']['n,gamma']['region'] = r
+Ca['reactions']['n,gamma']['roi'] = r # computed
+Ca['reactions']['n,gamma']['roi_cd'] = r # initial guess
+Ca['reactions']['n,gamma']['halflife'] = 162.67 * 24 * 60 * 60  # s
+Ca['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
+Ca['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
+Ca['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
 
 # scandium
 Sc = {}
@@ -137,6 +158,25 @@ Ti['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ti['reactions']['n,p']['plotname'] = 'ti_n,p'
 
 #TODO Ti46,47
+
+# chromium
+Cr = {}
+Cr['M'] = 51.9961  # g/mol
+Cr['rho'] = 7.19  # g/cm3
+Cr['reactions'] = {}
+
+# Cr52(n,g)Unknown
+Cr['reactions']['n,gamma'] = {}
+f, r = extract('24-Cr-52(n,&gamma;)')
+Cr['reactions']['n,gamma']['func'] = f
+Cr['reactions']['n,gamma']['region'] = r
+Cr['reactions']['n,gamma']['roi'] = r # computed
+Cr['reactions']['n,gamma']['roi_cd'] = r # initial guess
+Cr['reactions']['n,gamma']['halflife'] = r  # s
+Cr['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
+Cr['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
+Cr['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
+
 
 # manganese
 Mn = {}
@@ -199,7 +239,7 @@ Ni['reactions']['n,p'] = {}
 f, r = extract('28-Ni-58(n,p)')
 Ni['reactions']['n,p']['func'] = f
 Ni['reactions']['n,p']['region'] = r
-Ni['reactions']['n,p']['roi'] = 2.0215e+06, 7.4169e+06 # computed
+Ni['reactions']['n,p']['roi'] = 1.9656e+06, 7.4169e+06 # computed
 Ni['reactions']['n,p']['roi_cd'] = r  # initial guess
 Ni['reactions']['n,p']['halflife'] = 70.86 * 24 * 60 * 60 #s
 Ni['reactions']['n,p']['label'] = r'($n,p$)'
@@ -218,7 +258,7 @@ Cu['reactions']['n,gamma'] = {}
 f, r = extract('29-Cu-63(n,&gamma;)')
 Cu['reactions']['n,gamma']['func'] = f
 Cu['reactions']['n,gamma']['region'] = r
-Cu['reactions']['n,gamma']['roi'] = 2.9583e-03, 5.7752e+02 # computed
+Cu['reactions']['n,gamma']['roi'] = 2.9583e-03, 5.7752 # computed
 Cu['reactions']['n,gamma']['roi_cd'] = r # initial guess
 Cu['reactions']['n,gamma']['halflife'] = 12.70 * 60 * 60 # s
 Cu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
@@ -254,7 +294,7 @@ Zr['reactions']['n,2n'] = {}
 f, r = extract('40-Zr-90(n,2n)')
 Zr['reactions']['n,2n']['func'] = f
 Zr['reactions']['n,2n']['region'] = r
-Zr['reactions']['n,2n']['roi'] = 1.2637e+07, 1.7072e+07 # computed
+Zr['reactions']['n,2n']['roi'] = 1.2300e+07, 1.7072e+07 # computed
 Zr['reactions']['n,2n']['roi_cd'] = r # initial guess
 Zr['reactions']['n,2n']['halflife'] = 78.41 *60 * 60  # s
 Zr['reactions']['n,2n']['label'] = r'($n,2n$)'
@@ -289,7 +329,7 @@ Rh['reactions']['n,gamma'] = {}
 f, r = extract('45-Rh-103(n,&gamma;).txt')
 Rh['reactions']['n,gamma']['func'] = f
 Rh['reactions']['n,gamma']['region'] = r
-Rh['reactions']['n,gamma']['roi'] = 4.6704e-03, 1.3929e+00  # computed
+Rh['reactions']['n,gamma']['roi'] = 9.5741e-03, 1.4254e+00  # computed
 Rh['reactions']['n,gamma']['roi_cd'] = 4.6704e-03, 1.3929e+00  # initial guess
 Rh['reactions']['n,gamma']['halflife'] = 4.4 * 60  # s
 Rh['reactions']['n,gamma']['label'] = r"($n,\gamma$)"
@@ -300,7 +340,7 @@ Rh['reactions']['n,inelastic'] = {}
 f, r = extract('45-Rh-103(n,inelastic).txt')
 Rh['reactions']['n,inelastic']['func'] = f
 Rh['reactions']['n,inelastic']['region'] = r
-Rh['reactions']['n,inelastic']['roi'] = 4.4469e+05, 5.1947e+06  # computed
+Rh['reactions']['n,inelastic']['roi'] = 4.8522e+05, 5.2273e+06  # computed
 Rh['reactions']['n,inelastic']['roi_cd'] = 4.4469e+05, 5.1947e+06  # initial guess
 Rh['reactions']['n,inelastic']['halflife'] = 56.12 * 60  # s
 Rh['reactions']['n,inelastic']['label'] = r"($n,n'$)"
@@ -332,7 +372,7 @@ In['reactions']['n,gamma'] = {}
 f, r = extract('49-In-115(n,&gamma;).txt')
 In['reactions']['n,gamma']['func'] = f
 In['reactions']['n,gamma']['region'] = r
-In['reactions']['n,gamma']['roi'] = 7.0021e-03, 1.6130e+00  # computed
+In['reactions']['n,gamma']['roi'] = 1.2087, 1.9145  # computed
 In['reactions']['n,gamma']['roi_cd'] = 1.1955e+00, 1.9916e+00  # computed
 In['reactions']['n,gamma']['halflife'] = 54 * 60  # s
 In['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
@@ -344,7 +384,7 @@ In['reactions']['n,inelastic'] = {}
 f, r = extract('49-In-115(n,inelastic).txt')
 In['reactions']['n,inelastic']['func'] = f
 In['reactions']['n,inelastic']['region'] = r
-In['reactions']['n,inelastic']['roi'] = 1.3314e+06, 5.9607e+06  # computed
+In['reactions']['n,inelastic']['roi'] = 1.2918e+06, 6.1396e+06  # computed
 In['reactions']['n,inelastic']['roi_cd'] = 1.3368e+06, 5.9704e+06  # computed
 In['reactions']['n,inelastic']['halflife'] = 4.36 * 60 * 60  # s
 In['reactions']['n,inelastic']['label'] = r"($n,n'$)"
@@ -362,7 +402,7 @@ Eu['reactions']['n,gamma'] = {}
 f, r = extract('63-Eu-151(n,&gamma;)')
 Eu['reactions']['n,gamma']['func'] = f
 Eu['reactions']['n,gamma']['region'] = r
-Eu['reactions']['n,gamma']['roi'] = 1.8403e-03,4.5379e-01 # computed
+Eu['reactions']['n,gamma']['roi'] = 5.1612e-03,4.5379e-01 # computed
 Eu['reactions']['n,gamma']['roi_cd'] = r # initial guess
 Eu['reactions']['n,gamma']['halflife'] = 13.537 * 365 * 24 * 60 * 60  # s
 Eu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
@@ -422,7 +462,7 @@ Ir['reactions']['n,gamma']['halflife'] = 73.827 * 24 * 60 * 60  # s
 Ir['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Ir['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Ir['reactions']['n,gamma']['plotname'] = 'ir_n,gamma'
-
+'''
 # tungsten
 W = {}
 W['M'] = 183.84  # g/mol
@@ -434,13 +474,13 @@ W['reactions']['n,gamma'] = {}
 f, r = extract('74-W-186(n,&gamma;)')
 W['reactions']['n,gamma']['func'] = f
 W['reactions']['n,gamma']['region'] = r
-W['reactions']['n,gamma']['roi'] = 5.8359e-03,1.9497e+01 # computed
+W['reactions']['n,gamma']['roi'] = 10,20 # initial guess
 W['reactions']['n,gamma']['roi_cd'] = r # initial guess
 W['reactions']['n,gamma']['halflife'] = 23.72 * 60 * 60  # s
 W['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 W['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 W['reactions']['n,gamma']['plotname'] = 'w_n,gamma'
-
+'''
 
 # gold
 Au = {}
@@ -455,7 +495,7 @@ Au['reactions']['n,gamma'] = {}
 f, r = extract('79-Au-197(n,&gamma;).txt')
 Au['reactions']['n,gamma']['func'] = f
 Au['reactions']['n,gamma']['region'] = r
-Au['reactions']['n,gamma']['roi'] = 6.7266e-03, 5.2684e+00  # computed
+Au['reactions']['n,gamma']['roi'] = 1.2992e-02, 7.1730  # computed
 Au['reactions']['n,gamma']['roi_cd'] = 4.0752e+00, 7.1730e+00  # computed
 Au['reactions']['n,gamma']['halflife'] = 2.7 * 60 * 60 * 24  # s
 Au['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
@@ -466,7 +506,7 @@ Au['reactions']['n,2n'] = {}
 f, r = extract('79-Au-197(n,2n).txt')
 Au['reactions']['n,2n']['func'] = f
 Au['reactions']['n,2n']['region'] = r
-Au['reactions']['n,2n']['roi'] = 8.8259e+06, 1.3510e+07  # computed
+Au['reactions']['n,2n']['roi'] = 8.7407e+06, 1.3512e+07  # computed
 Au['reactions']['n,2n']['roi_cd'] = 8.8254e+06, 1.3512e+07  # computed
 Au['reactions']['n,2n']['halflife'] = 6.18 * 60 * 60 * 24  # s
 Au['reactions']['n,2n']['label'] = r'($n,2n$)'
@@ -477,7 +517,7 @@ Au['reactions']['n,inelastic'] = {}
 f, r = extract('79-Au-197(n,inelastic).txt')
 Au['reactions']['n,inelastic']['func'] = f
 Au['reactions']['n,inelastic']['region'] = r
-Au['reactions']['n,inelastic']['roi'] = 3.2404e+05, 5.2532e+06  # computed
+Au['reactions']['n,inelastic']['roi'] = 4.0041e+05, 5.3413e+06  # computed
 Au['reactions']['n,inelastic']['roi_cd'] = 3.2797e+05, 5.2760e+06  # computed
 Au['reactions']['n,inelastic']['halflife'] = 7.8  # s
 Au['reactions']['n,inelastic']['label'] = r"($n,n'$)"
@@ -517,10 +557,14 @@ foils['Cu'] = Cu
 foils['Zn'] = Zn
 foils['Zr'] = Zr
 foils['Mg'] = Mg
+'''
 foils['W'] = W
+'''
 foils['Mn'] = Mn
 foils['Lu'] = Lu
 foils['Eu'] = Eu
 foils['Dy'] = Dy
 foils['Ir'] = Ir
 foils['Mo'] = Mo
+foils['Cr'] = Cr
+foils['Ca'] = Ca
