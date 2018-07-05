@@ -39,6 +39,25 @@ Cd['reactions']['n,tot']['func'] = cd_xs_weighted
 Cd['reactions']['n,tot']['halflife'] = 0  # s
 Cd['reactions']['n,tot']['label'] = r'($n,tot$)'
 
+
+# titanium 47
+Ti = {}
+Ti['M'] = 47.867  # g/mol
+Ti['rho'] = 4.506  # g/cm3
+Ti['principle'] = 'n,p'
+Ti['principle_br'] = 1.0
+Ti['principle_erg'] = 100  # just a guess
+
+Ti['reactions'] = {}
+Ti['reactions']['n,p'] = {}
+f, r = extract('22-Ti-47(n,p)')
+Ti['reactions']['n,p']['func'] = f
+Ti['reactions']['n,p']['region'] = r
+Ti['reactions']['n,p']['halflife'] = 3.422 * 24 * 3600  # s
+Ti['reactions']['n,p']['label'] = r'($n,p$)'
+
+
+
 # magnesium
 Mg = {}
 Mg['M'] = 24.3050  # g/mol
@@ -138,7 +157,7 @@ Sc['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Sc['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Sc['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
 
-
+'''
 # titanium
 Ti = {}
 Ti['M'] = 47.867  # g/mol
@@ -156,7 +175,7 @@ Ti['reactions']['n,p']['halflife'] = 43.7 * 60 * 60 #s
 Ti['reactions']['n,p']['label'] = r'($n,p$)'
 Ti['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ti['reactions']['n,p']['plotname'] = 'ti_n,p'
-
+'''
 #TODO Ti46,47
 
 # chromium
@@ -568,3 +587,4 @@ foils['Ir'] = Ir
 foils['Mo'] = Mo
 foils['Cr'] = Cr
 foils['Ca'] = Ca
+foils['Ti'] = Ti
