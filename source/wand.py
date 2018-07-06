@@ -30,7 +30,7 @@ class Wand(object):
 
     def irradiate(self, write):
         print('\n')
-        print(self.name.capitalize() + 'w/ Cadmium' if self.cd else self.name.capitalize())
+        print(self.name.capitalize() + ' w/ Cadmium' if self.cd else self.name.capitalize())
         self.calc_t_f()
         self.removal_activity = 0
         self.counting_activities = np.zeros(4)
@@ -52,8 +52,11 @@ class Wand(object):
 
     def package_data(self):
         data = {}
+        cd_str = ''
+        if self.cd:
+            cd_str = '_cd'
         for i in range(1, 5):
-            data[self.mat.lower() + str(i)] = Foil(self.counts[i-1], np.sqrt(self.counts[i-1]),
+            data[self.mat.lower() + cd_str + str(i)] = Foil(self.counts[i-1], np.sqrt(self.counts[i-1]),
                                                    self.counting_activities[i-1], 0, self.counting_time)
         return data
 

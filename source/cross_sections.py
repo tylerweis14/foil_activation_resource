@@ -322,7 +322,7 @@ Zr['reactions']['n,2n']['plotname'] = 'zr_n,2n'
 
 # molybdenum
 Mo = {}
-Mo['M'] = 95.95 # g/mol
+Mo['M'] = 95.95  # g/mol
 Mo['rho'] = 10.28  # g/cm3
 Mo['reactions'] = {}
 
@@ -331,9 +331,9 @@ Mo['reactions']['n,gamma'] = {}
 f, r = extract('42-Mo-98(n,&gamma;)')
 Mo['reactions']['n,gamma']['func'] = f
 Mo['reactions']['n,gamma']['region'] = r
-Mo['reactions']['n,gamma']['roi'] = 1.6333e-02,7.6131e+03 # computed
-Mo['reactions']['n,gamma']['roi_cd'] = r # initial guess
-Mo['reactions']['n,gamma']['halflife'] =  	65.94 * 60 * 60  # s
+Mo['reactions']['n,gamma']['roi'] = 1.6333e-02, 7.6131e+03  # computed
+Mo['reactions']['n,gamma']['roi_cd'] = r  # initial guess
+Mo['reactions']['n,gamma']['halflife'] = 65.94 * 60 * 60  # s
 Mo['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Mo['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Mo['reactions']['n,gamma']['plotname'] = 'mo_n,gamma'
@@ -342,6 +342,9 @@ Mo['reactions']['n,gamma']['plotname'] = 'mo_n,gamma'
 Rh = {}
 Rh['M'] = 102.90550  # g/mol
 Rh['rho'] = 12.41  # g/cm3
+Rh['principle'] = 'n,inelastic'
+Rh['principle_br'] = 1.0
+Rh['principle_erg'] = 40
 Rh['reactions'] = {}
 
 Rh['reactions']['n,gamma'] = {}
@@ -363,7 +366,7 @@ Rh['reactions']['n,inelastic']['roi'] = 4.8522e+05, 5.2273e+06  # computed
 Rh['reactions']['n,inelastic']['roi_cd'] = 4.4469e+05, 5.1947e+06  # initial guess
 Rh['reactions']['n,inelastic']['halflife'] = 56.12 * 60  # s
 Rh['reactions']['n,inelastic']['label'] = r"($n,n'$)"
-Rh['reactions']['n,inelastic']['erg'] = [(0.004, 40)]  # intensity, keV
+Rh['reactions']['n,inelastic']['erg'] = [(1.0, 40)]  # intensity, keV
 Rh['reactions']['n,inelastic']['plotname'] = 'rh_n,inelastic'
 
 # Rh['reactions']['n,2n'] = {}
