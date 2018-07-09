@@ -10,8 +10,8 @@ def hpge_efficiency1(e):
 
 
 def hpge_efficiency(e):
-    erg = np.array([60, 86.5, 105.3, 176.3, 427.90, 600.6, 834.8, 1173.2, 1332.5])
-    eff = np.array([2.39e-2, 7.5e-2, 9.27e-2, 9.35e-2, 4.77e-2, 3.51e-2, 2.64e-2, 1.87e-2, 1.69e-2])
+    erg = np.array([0, 60, 86.5, 105.3, 176.3, 427.90, 600.6, 834.8, 1173.2, 1332.5])
+    eff = np.array([0, 2.39e-2, 7.5e-2, 9.27e-2, 9.35e-2, 4.77e-2, 3.51e-2, 2.64e-2, 1.87e-2, 1.69e-2])
     efficiency = interp1d(erg, eff, fill_value='extrapolate')
     return efficiency(e)
 

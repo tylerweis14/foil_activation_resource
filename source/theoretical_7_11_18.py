@@ -19,15 +19,16 @@ def run(rerun_all):
     #                                rhodium
     ###############################################################################
 
-    if False or rerun_all:
+    if True or rerun_all:
         wand = Wand()
         wand.name = 'rhodium'
         wand.mat = 'Rh'
         wand.cd = False
-        wand.masses = np.array([0.5, 0.5, 0.5, 0.5])  # mg
+        stack_height = 5
+        wand.masses = np.array([0.5, 0.5, 0.5, 0.5]) * stack_height  # mg
         wand.t_i = 60  # s
-        wand.t_w = 3600*2  # s
-        wand.counting_time = 300
+        wand.t_w = 3600*1  # s
+        wand.counting_time = 600
         wand.P = 100  # kW(th)
         wand.irradiate(False)
         data.update(wand.package_data())
@@ -35,15 +36,15 @@ def run(rerun_all):
     ###############################################################################
     #                              aluminum
     ###############################################################################
-    if True or rerun_all:
+    if False or rerun_all:
         wand = Wand()
         wand.name = 'aluminum'
         wand.mat = 'Al'
         wand.cd = False
-        stack_height = 10
-        masses = np.array([0.2, 0.2, 0.2, 0.2]) * stack_height
+        stack_height = 5
+        masses = np.array([0.6, 0.6, 0.6, 0.6]) * stack_height
         wand.masses = masses  # mg
-        wand.t_i = 3600  # s
+        wand.t_i = 3600 * 1  # s
         wand.t_w = 3600*24*2  # s
         wand.counting_time = 3600
         wand.P = 100  # kW(th)
@@ -57,26 +58,10 @@ def run(rerun_all):
         wand = Wand()
         wand.name = 'indium'
         wand.mat = 'In'
-        wand.cd = False
-        wand.masses = np.array([1.7, 1.5, 1.4, 1.6])  # mg
-        wand.t_i = 60  # s
-        wand.t_w = 8*3600 + 40*60  # s
-        wand.counting_time = 60
-        wand.P = 100  # kW(th)
-        wand.irradiate(False)
-        data.update(wand.package_data())
-
-    ###############################################################################
-    #                                gold (cd)
-    ###############################################################################
-    if False or rerun_all:
-        wand = Wand()
-        wand.name = 'indium'
-        wand.mat = 'In'
         wand.cd = True
-        wand.masses = np.array([3.9, 3.3, 3.4, 3.9])  # mg
-        wand.t_i = 60  # s
-        wand.t_w = 3600*2 + 40*60  # s
+        wand.masses = np.array([1.7, 1.5, 1.4, 1.6])  # mg
+        wand.t_i = 30  # s
+        wand.t_w = 8*3600 + 40*60  # s
         wand.counting_time = 300
         wand.P = 100  # kW(th)
         wand.irradiate(False)
@@ -87,11 +72,11 @@ def run(rerun_all):
         pickle.dump(data, F)
 
 if __name__ == '__main__':
-    run(False)
+    run(True)
 
-with open(dataname, 'rb') as F:
-    data = pickle.load(F)
+    with open(dataname, 'rb') as F:
+        data = pickle.load(F)
 
-for key, val in data.items():
-    counts = val.peak_area
-    print(key, counts, np.sqrt(counts) / counts)
+    for key, val in data.items():
+        counts = val.peak_area
+        print('{:>6}  {:4.2e}  {:5.4f}'.format(key, counts, np.sqrt(counts) / counts))
