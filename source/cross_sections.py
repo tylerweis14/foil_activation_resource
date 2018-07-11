@@ -550,6 +550,9 @@ Au['reactions']['n,inelastic']['plotname'] = 'au_n,inelastic'
 U = {}
 U['M'] = 235.044  # g/mol
 U['rho'] = 19.1  # g/cm3
+U['principle'] = 'n,total_fission'
+U['principle_br'] = 0.1
+U['principle_erg'] = 662.3
 U['reactions'] = {}
 
 U['reactions']['n,total_fission'] = {}
@@ -558,9 +561,9 @@ U['reactions']['n,total_fission']['func'] = f
 U['reactions']['n,total_fission']['region'] = r
 U['reactions']['n,total_fission']['roi'] = 2.5315e-03, 3.0442e-01  # unknown
 U['reactions']['n,total_fission']['roi_cd'] = -1, -1  # unknown
-U['reactions']['n,total_fission']['halflife'] = -1  # unknown
+U['reactions']['n,total_fission']['halflife'] = 30 * 365.25 * 24 * 3600  # s (currently using cs halflife)
 U['reactions']['n,total_fission']['label'] = r'($n,fission$)'
-U['reactions']['n,total_fission']['erg'] = -1  # unknown
+U['reactions']['n,total_fission']['erg'] = 662.3  # (currently using cs erg)
 U['reactions']['n,total_fission']['plotname'] = 'u_n,total_fission'
 
 

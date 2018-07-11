@@ -24,10 +24,10 @@ def run(rerun_all):
         wand.name = 'rhodium'
         wand.mat = 'Rh'
         wand.cd = False
-        stack_height = 5
-        wand.masses = np.array([0.5, 0.5, 0.5, 0.5]) * stack_height  # mg
+        stack_height = 6
+        wand.masses = np.array([1.1, 1.1, 1.1, 1.1]) * stack_height  # mg
         wand.t_i = 60  # s
-        wand.t_w = 3600*1  # s
+        wand.t_w = 3600*2  # s
         wand.counting_time = 600
         wand.P = 100  # kW(th)
         wand.irradiate(False)
