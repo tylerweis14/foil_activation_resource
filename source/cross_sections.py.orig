@@ -39,7 +39,7 @@ Cd['reactions']['n,tot']['func'] = cd_xs_weighted
 Cd['reactions']['n,tot']['halflife'] = 0  # s
 Cd['reactions']['n,tot']['label'] = r'($n,tot$)'
 
-'''
+
 # titanium 47
 Ti = {}
 Ti['M'] = 47.867  # g/mol
@@ -55,7 +55,7 @@ Ti['reactions']['n,p']['func'] = f
 Ti['reactions']['n,p']['region'] = r
 Ti['reactions']['n,p']['halflife'] = 3.422 * 24 * 3600  # s
 Ti['reactions']['n,p']['label'] = r'($n,p$)'
-'''
+
 
 
 # magnesium
@@ -157,7 +157,7 @@ Sc['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Sc['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Sc['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
 
-
+'''
 # titanium
 Ti = {}
 Ti['M'] = 47.867  # g/mol
@@ -175,7 +175,7 @@ Ti['reactions']['n,p']['halflife'] = 43.7 * 60 * 60 #s
 Ti['reactions']['n,p']['label'] = r'($n,p$)'
 Ti['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ti['reactions']['n,p']['plotname'] = 'ti_n,p'
-
+'''
 #TODO Ti46,47
 
 # chromium
@@ -331,9 +331,15 @@ Mo['reactions']['n,gamma'] = {}
 f, r = extract('42-Mo-98(n,&gamma;)')
 Mo['reactions']['n,gamma']['func'] = f
 Mo['reactions']['n,gamma']['region'] = r
+<<<<<<< 593b1be7e9e334d8cbb11540f87cd9395bfdf9bf
 Mo['reactions']['n,gamma']['roi'] = 1.6333e-02, 7.6131e+03  # computed
 Mo['reactions']['n,gamma']['roi_cd'] = r  # initial guess
 Mo['reactions']['n,gamma']['halflife'] = 65.94 * 60 * 60  # s
+=======
+Mo['reactions']['n,gamma']['roi'] = 1.6333e-02,1e-01 # initial guess
+Mo['reactions']['n,gamma']['roi_cd'] = r # initial guess
+Mo['reactions']['n,gamma']['halflife'] =  	65.94 * 60 * 60  # s
+>>>>>>> changes
 Mo['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Mo['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Mo['reactions']['n,gamma']['plotname'] = 'mo_n,gamma'

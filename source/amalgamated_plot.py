@@ -69,9 +69,10 @@ colors = ['green', 'gold', 'red', 'blue', 'indigo', 'fuchsia', 'black',
           'lightsalmon', 'maroon', 'cyan','papayawhip', 'chocolate',
           'darkkhaki']
 linestyles = [':', '--', '-', ':', '-.', ':','--', '-',':','-.','-',':','--',
-              '-.',':','--','-.']
+              '-.',':','--','-.',':']
+scaling_factor = 1e12
 heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9, 1e-10,1e-2,1e-1,1e-5,1,
-                    1.5,10,70,100,10,1.5e-1,1e-11,1e-12]) * powerscaling
+                    1.5,10,70,100,10,1.5e-1,1e-11,1e-12]) * scaling_factor
 
 for i, reaction in enumerate(reactions):
     # region
