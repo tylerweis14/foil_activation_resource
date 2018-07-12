@@ -17,7 +17,7 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
 
     # set up N_i
     N_i = np.zeros(2)
-    N_i[0] = (m * 1E-3 * Na) / foil.M
+    N_i[0] = ((m * 1E-3 * Na) / foil.M) * foil.abundance
 
     # calculate decay constants with halflifes
     decay_constants = np.array([0, foil.decay_constant])

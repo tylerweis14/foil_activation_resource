@@ -57,7 +57,7 @@ Ti['reactions']['n,p']['halflife'] = 3.422 * 24 * 3600  # s
 Ti['reactions']['n,p']['label'] = r'($n,p$)'
 '''
 
-
+'''
 # magnesium
 Mg = {}
 Mg['M'] = 24.3050  # g/mol
@@ -75,6 +75,7 @@ Mg['reactions']['n,p']['halflife'] = 14.9590 * 60 * 60 # s
 Mg['reactions']['n,p']['label'] = r'($n,p$)'
 Mg['reactions']['n,p']['erg'] = [-1,1]  # keV (placeholder)
 Mg['reactions']['n,p']['plotname'] = 'mg_n,p'
+'''
 
 # aluminum
 Al = {}
@@ -265,7 +266,7 @@ Ni['reactions']['n,p']['label'] = r'($n,p$)'
 Ni['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ni['reactions']['n,p']['plotname'] = 'ni_n,p'
 
-
+'''
 # copper
 Cu = {}
 Cu['M'] = 63.546  # g/mol
@@ -283,7 +284,8 @@ Cu['reactions']['n,gamma']['halflife'] = 12.70 * 60 * 60 # s
 Cu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Cu['reactions']['n,gamma']['erg'] = [(1,1)]  # keV (placeholder)
 Cu['reactions']['n,gamma']['plotname'] = 'cu_n,gamma'
-
+'''
+'''
 # zinc
 Zn = {}
 Zn['M'] = 65.38  # g/mol
@@ -301,6 +303,7 @@ Zn['reactions']['n,p']['halflife'] = 12.70 * 60 * 60 # s
 Zn['reactions']['n,p']['label'] = r'($n,p$)'
 Zn['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Zn['reactions']['n,p']['plotname'] = 'zn_n,p'
+'''
 
 # zirconium
 Zr = {}
@@ -320,6 +323,7 @@ Zr['reactions']['n,2n']['label'] = r'($n,2n$)'
 Zr['reactions']['n,2n']['erg'] = [(1, 1780)]  # keV (placeholder)
 Zr['reactions']['n,2n']['plotname'] = 'zr_n,2n'
 
+'''
 # molybdenum
 Mo = {}
 Mo['M'] = 95.95  # g/mol
@@ -337,6 +341,8 @@ Mo['reactions']['n,gamma']['halflife'] = 65.94 * 60 * 60  # s
 Mo['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Mo['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Mo['reactions']['n,gamma']['plotname'] = 'mo_n,gamma'
+'''
+
 
 # rhodium
 Rh = {}
@@ -578,19 +584,12 @@ foils['Sc'] = Sc
 foils['Ti'] = Ti
 foils['Fe'] = Fe
 foils['Ni'] = Ni
-foils['Cu'] = Cu
-foils['Zn'] = Zn
 foils['Zr'] = Zr
-foils['Mg'] = Mg
-'''
-foils['W'] = W
-'''
 foils['Mn'] = Mn
 foils['Lu'] = Lu
 foils['Eu'] = Eu
 foils['Dy'] = Dy
 foils['Ir'] = Ir
-foils['Mo'] = Mo
 foils['Cr'] = Cr
 foils['Ca'] = Ca
 foils['Ti'] = Ti

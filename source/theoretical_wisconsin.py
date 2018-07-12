@@ -17,15 +17,36 @@ def run(rerun_all, dataname):
             data = pickle.load(F)
     except:
         data = {}
-    ###############################################################################
-    #                                rhodium
-    ###############################################################################
 
-    if True or rerun_all:
-        stack_height = 6
-        wand = Wand('indium', 'In', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 60, 3600*2, 600, 100, experimentname)
-        wand.irradiate(False)
-        data.update(wand.package_data())
+    # indium
+    stack_height = 6
+    wand = Wand('indium', 'In', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 30, 3600*2, 60, 100, experimentname)
+    wand.irradiate(False)
+    data.update(wand.package_data())
+
+    # molybdenum
+    stack_height = 1
+    wand = Wand('molybdenum', 'Mo', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600, 3600*24*2, 600, 100, experimentname)
+    wand.irradiate(False)
+    data.update(wand.package_data())
+
+    # zinc
+    stack_height = 1
+    wand = Wand('zinc', 'Zn', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600*2, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(False)
+    data.update(wand.package_data())
+
+    # copper
+    stack_height = 1
+    wand = Wand('copper', 'Cu', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600*1, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(False)
+    data.update(wand.package_data())
+
+    # magnesium
+    stack_height = 1
+    wand = Wand('magnesium', 'Mg', False, np.array([1.1, 1.1, 1.1, 1.1]), 3600*1, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(False)
+    data.update(wand.package_data())
 
     # dump data
     with open(dataname, 'wb') as F:
@@ -34,7 +55,7 @@ def run(rerun_all, dataname):
 if __name__ == '__main__':
     run(True, dataname)
 
-    with open(dataname, 'rb') as F:
+    with open('theoretical_data/' + dataname, 'rb') as F:
         data = pickle.load(F)
 
     for key, val in data.items():

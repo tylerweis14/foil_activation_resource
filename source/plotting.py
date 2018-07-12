@@ -13,7 +13,7 @@ def plot_activities(foil, t, activity, experimentname, node):
     rcParams['axes.labelsize'] = 20
     rcParams.update({'figure.autolayout': True})
 
-    fig = plt.figure(0)
+    fig = plt.figure(node)
     ax = fig.add_subplot(111)
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Activity ($\mu$Ci)')
