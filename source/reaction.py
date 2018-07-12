@@ -41,7 +41,7 @@ class Reaction(object):
         reac, r_num = self.reactant.split('-')
         bypr, b_num = self.reactant.split('-')
         cd_s = ' Cd' if self.cd else ''
-        label = '$^{}${}({})$^{}${}{}'.format(r_num, reac, self.reaction, b_num, reac, cd_s)
+        label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, self.reaction, b_num, reac, cd_s)
         cd_s = '_Cd' if self.cd else ''
         plotname = '{}({}){}{}'.format(self.reactant, self.reaction, self.byproduct, cd_s)
         return label, plotname
@@ -68,5 +68,5 @@ class Reaction(object):
         l, r = self.findroot(0.05, cdf), self.findroot(0.95, cdf)
         return l, r
 
-foils['In'] = Reaction('In-115', 'n,gamma', 'In-116', False, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 1.0, 1293, 0.8, -1)
-foils['InCd'] = Reaction('In-115', 'n,gamma', 'In-116', True, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 1.0, 1293, 0.8, -1)
+foils['In'] = Reaction('In-115', 'n,gamma', 'In-116', False, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
+foils['InCd'] = Reaction('In-115', 'n,gamma', 'In-116', True, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)

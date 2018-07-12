@@ -1,37 +1,32 @@
 from activity import activity_calc
-from cross_sections import foils
 import numpy as np
 from tex_single_foil import write_single_foil
 from foil import Foil
-
-
-cases = [5]
-###############################################################################
-# wand object
-###############################################################################
+from reaction import foils
 
 
 class Wand(object):
     '''
     This is a wand.
     '''
-    def __init__(self):
-        self.name = ''
-        self.mat = ''
-        self.cd = False
-        self.masses = np.array([-1, -1, -1, -1])
-        self.t_i = -1
-        self.t_w = -1
-        self.counting_time = -1
-        self.P = -1
+    def __init__(self, name, mat, cd, masses, t_i, t_w, counting_time, P, experimentname):
+        self.name = name
+        self.mat = mat
+        self.cd = cd
+        self.masses = masses
+        self.t_i = t_i
+        self.t_w = t_w
+        self.counting_time = counting_time
+        self.P = P
+        self.experimentname = experimentname
+        self.t_f = self.calc_t_f()
 
     def calc_t_f(self):
-        self.t_f = self.t_i + self.t_w + (4 * self.counting_time) + 1
+        return self.t_i + self.t_w + (4 * self.counting_time) + 1
 
     def irradiate(self, write):
         print('\n')
         print(self.name.capitalize() + ' w/ Cadmium' if self.cd else self.name.capitalize())
-        self.calc_t_f()
         self.removal_activity = 0
         self.counting_activities = np.zeros(4)
         self.counts = np.zeros(4)
@@ -40,7 +35,8 @@ class Wand(object):
             t_cf = self.t_w + ((i + 1) * self.counting_time)
             count, act_rem, act_count = activity_calc(foils[self.mat], m, self.P,
                                                       self.t_i, t_ci, t_cf, self.t_f, self.cd,
-                                                      plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1), node=i+1)
+                                                      plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1),
+                                                      node=i+1, experimentname=self.experimentname)
             self.removal_activity += act_rem
             self.counting_activities[i] = act_count
             self.counts[i] = count
@@ -57,12 +53,13 @@ class Wand(object):
             cd_str = '_cd'
         for i in range(1, 5):
             data[self.mat.lower() + cd_str + str(i)] = Foil(self.counts[i-1], np.sqrt(self.counts[i-1]),
-                                                   self.counting_activities[i-1], 0, self.counting_time)
+                                                            self.counting_activities[i-1], 0, self.counting_time)
         return data
 
 
 if __name__ == '__main__':
-
+    pass
+'''
     ###############################################################################
     #                                gold
     ###############################################################################
@@ -194,3 +191,4 @@ if __name__ == '__main__':
         wand.counting_time = 600
         wand.P = 100  # kW(th)
         wand.irradiate()
+'''

@@ -21,15 +21,14 @@ def efficiency(erg, a, b, c, d, e):
 
 p0 = [-143.191, 91.147, -21.757, 2.279, -0.089]
 coeffs = curve_fit(efficiency, x, y, p0)
-print(coeffs[0])
 
 
 def hpge_efficiency(erg):
     return efficiency(erg, -2.48945787e+02, 1.67284939e+02, -4.21090055e+01, 4.67244596e+00, -1.93763734e-01)
 
 if __name__ == '__main__':
-    x = np.linspace(0, 2000, 2000)
-    y = hpge_efficiency(x)
-    y1 = hpge_efficiency1(x)
-    plt.plot(x, y, x, y1)
+    x1 = np.linspace(0, 2000, 2000)
+    y1 = hpge_efficiency(x1)
+    y2 = hpge_efficiency1(x1)
+    plt.plot(x1, y1, 'b', x1, y2, 'g', x, y, 'ko')
     plt.ylim(0)

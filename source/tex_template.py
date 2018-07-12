@@ -9,9 +9,9 @@ Total Activity at Removal: {:4.2e} $\\mu Ci$
 
 \\begin{{table*}}[h]
 \\centering
-\\begin{{tabular}}{{ |c|c|c|c|c|c|c| }}
+\\begin{{tabular}}{{ |c|c|c|c|c|c| }}
  \\hline
- Position & Mass $mg$ & Start Counting $s$ & Counting Time $s$ & Counting Activity $\\mu Ci$ & Expected Area (Counts) \\\\
+ Position & Mass $mg$ & Counting Time $s$ & Counting Activity $\\mu Ci$ & Expected Area (Counts) \\\\
  \\hline {}
 \\end{{tabular}}
 \\end{{table*}}
