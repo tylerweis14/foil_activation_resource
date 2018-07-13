@@ -44,8 +44,6 @@ def amalgamate(experimentname, element_names):
               'darkkhaki']
     linestyles = [':', '--', '-', ':', '-.', ':', '--', '-', ':', '-.', '-', ':', '--',
                   '-.', ':', '--', '-.', ':']
-    res_heights = np.array([1e3, 1e4, 1e5, 1e6, 1e7, 1e14, 1e15, 1e16, 1e17]) * 0.5
-    thresh_heights = np.geomspace(1e10, 1e17, 8)
 
     resonance = []
     threshold = []
@@ -58,16 +56,32 @@ def amalgamate(experimentname, element_names):
     resonance = sorted(resonance, key=lambda x: -(np.log(x.roi[1]) - np.log(x.roi[0])))
     threshold = sorted(threshold, key=lambda x: np.log(x.roi[1]) - np.log(x.roi[0]))
 
-    for i, foil in enumerate(resonance):
-        # region
-        ax1.plot(foil.roi, [res_heights[i]]*2, color=colors[i], linewidth=2.0)
-        ax1.text(foil.roi[0]*0.4, res_heights[i]*2, foil.label)
+    res_heights = np.array([1e3, 1e4, 1e5, 1e6, 1e7, 1e14, 1e15, 1e16, 1e17]) * 0.5
+    thresh_heights = np.geomspace(1e10, 1e17, 8)
 
+    i = 0
+    new_resonance = []
+    for r in range(len(resonance)):
+        print(new_resonance)
+        print(res_heights[i])
+        new_resonance.append(res_heights[i])
+        if (r+1) % 2:
+            i += 1
+        i *= -1
+        print(i)
+    res_heights = np.sort(new_resonance)
+    print(res_heights)
+
+    for i, foil in enumerate(resonance):
         # cross section
         xs = foil.func
         region = foil.region
         reg = np.geomspace(*region, 1000)[:-1]
         ax2.plot(reg, xs(reg), color=colors[i], label=foil.label, linestyle=linestyles[i])
+
+        # region
+        ax1.plot(foil.roi, [res_heights[i]]*2, color=colors[i], linewidth=2.0)
+        ax1.text(foil.roi[0]*0.4, res_heights[i]*2, foil.label)
 
     for i, foil in enumerate(threshold):
         l = len(resonance)

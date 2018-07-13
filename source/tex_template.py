@@ -22,17 +22,13 @@ Total Activity at Removal: {:4.2e} $\\mu Ci$
 \\begin{{subfigure}}{{.5\\textwidth}}
   \\centering
   {}
-  \\caption{{A subfigure}}
-  \\label{{fig:sub1}}
+  \\caption{{Activity}}
 \\end{{subfigure}}%
 \\begin{{subfigure}}{{.5\\textwidth}}
   \\centering
   {}
-  \\caption{{A subfigure}}
-  \\label{{fig:sub2}}
+  \\caption{{Cross Section}}
 \\end{{subfigure}}
-\\caption{{A figure with two subfigures}}
-\\label{{fig:test}}
 \\end{{figure}}
 
 \\begin{{table*}}[h]
