@@ -4,6 +4,8 @@ Theoretical Results for the wisconsin irradiation.
 import numpy as np
 from wand import Wand
 import pickle
+from reaction import foils
+from tex_experiment import experiment_template
 
 dataname = 'theoretical_wisconsin.txt'
 
@@ -21,33 +23,40 @@ def run(rerun_all, dataname):
     # indium
     stack_height = 6
     wand = Wand('indium', 'In', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 30, 3600*2, 60, 100, experimentname)
-    wand.irradiate(False)
+    wand.irradiate(True)
     data.update(wand.package_data())
 
     # molybdenum
-    stack_height = 1
-    wand = Wand('molybdenum', 'Mo', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600, 3600*24*2, 600, 100, experimentname)
-    wand.irradiate(False)
+    wand = Wand('molybdenum', 'Mo', False, 'estimate', 3600, 3600*24*2, 600, 100, experimentname)
+    wand.irradiate(True)
     data.update(wand.package_data())
 
+    '''
     # zinc
-    stack_height = 1
-    wand = Wand('zinc', 'Zn', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600*2, 3600*24*2, 3600, 100, experimentname)
-    wand.irradiate(False)
+    wand = Wand('zinc', 'Zn', False, 'estimate', 3600*2, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(True)
     data.update(wand.package_data())
 
     # copper
-    stack_height = 1
-    wand = Wand('copper', 'Cu', False, np.array([1.1, 1.1, 1.1, 1.1]) * stack_height, 3600*1, 3600*24*2, 3600, 100, experimentname)
-    wand.irradiate(False)
+    wand = Wand('copper', 'Cu', False, 'estimate', 3600*1, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(True)
     data.update(wand.package_data())
 
     # magnesium
-    stack_height = 1
-    wand = Wand('magnesium', 'Mg', False, np.array([1.1, 1.1, 1.1, 1.1]), 3600*1, 3600*24*2, 3600, 100, experimentname)
-    wand.irradiate(False)
+    wand = Wand('magnesium', 'Mg', False, 'estimate', 3600*1, 3600*24*2, 3600, 100, experimentname)
+    wand.irradiate(True)
     data.update(wand.package_data())
+    '''
 
+    foils_irradiated = ['In', 'Mo']
+    experiment_temp = experiment_template.split('SPLIT')
+    foil_s = ''
+    for f in foils_irradiated:
+        foil_s += '\\include{{source/{}}}\n'.format(foils[f].plotname + '_' + experimentname + '.tex')
+    experiment_tex = experiment_temp[0] + foil_s + experiment_temp[1]
+    with open(experimentname + '.tex', 'w+') as F:
+        F.write(experiment_tex)
+    
     # dump data
     with open(dataname, 'wb') as F:
         pickle.dump(data, F)

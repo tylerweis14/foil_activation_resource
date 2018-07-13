@@ -41,7 +41,7 @@ class Reaction(object):
         reac, r_num = self.reactant.split('-')
         bypr, b_num = self.reactant.split('-')
         cd_s = ' Cd' if self.cd else ''
-        reaction = self.reaction if self.reaction != 'n,gamma' else 'n,$\gamma$'
+        reaction = self.reaction if self.reaction not in ['n,gamma', 'n,alpha'] else 'n,$\gamma$' if self.reaction != 'n,alpha' else 'n,$\\alpha$'
         label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, reaction, b_num, reac, cd_s)
         cd_s = '_Cd' if self.cd else ''
         plotname = '{}({}){}{}'.format(self.reactant, self.reaction, self.byproduct, cd_s)

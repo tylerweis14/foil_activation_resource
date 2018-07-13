@@ -17,60 +17,37 @@ def time_change(t):
         return '{:4.1f} s'.format(t)
 
 
-def write_single_foil(title, power, t_irrad, t_wait, t_count, A_rem, A_count, masses, foilkey, counts, cd=False):
+def write_single_foil(foil, power, t_irrad, t_wait, t_count, A_rem, A_count, masses, counts, experimentname='theoretical'):
     '''
     Do something.
     '''
 
-    foil = foils[foilkey]
-
-    if cd:
-        title_s = title.capitalize() + '  (Cd)'
-    else:
-        title_s = title.capitalize()
+    title_s = foil.label
     irrad_s = ''
     for i in range(4):
-        irrad_s += '\n {} & {} & {} & {} & {:4.2e} & {:4.2e}\\\\ \n'.format(i+1, masses[i], t_count, A_count[i], counts[i])
+        irrad_s += '\n {} & {} & {} & {:4.2e} & {:4.2e}\\\\ \n'.format(i+1, masses[i], t_count, A_count[i], counts[i])
         irrad_s += '\\hline'
 
-    cdplot_s = ''
-    if cd:
-        cdplot_s = 'cd'
-    activity_plot_s = 'source/plot/{}1{}_activity'.format(foilkey.lower(), cdplot_s)
+    activity_plot = 'source/plot/' + foil.plotname + '_' + experimentname + '1' + '.png'
 
-    reaction_s = ''
-    for i, reaction in enumerate(foil['reactions'].values()):
-        l, p = reaction['label'], 'source/plot/' + reaction['plotname']
-        if cd:
-            p += '_cd'
-        quad = '\\\\'
-        if i == 1:
-            quad = '\\quad'
-        reaction_s += '   \\subfloat[][ {} Reaction Rate]{{\\includegraphics[width=.4\\textwidth]{{{}}}}}{} \n'.format(l, p, quad)
+    p = 'source/plot/' + foil.plotname + '.png'
+    reaction_s = '   \\includegraphics[width=.4\\textwidth]{{{}}} \n'.format(p)
+    activity_plot_s = '   \\includegraphics[width=.4\\textwidth]{{{}}} \n'.format(activity_plot)
 
     # reaction table
     reaction_table_s = ''
-    for reaction in foil['reactions'].values():
-        s0 = reaction['label']
-        s1 = time_change(reaction['halflife'])
-        s2 = '{:4.2e}, {:4.2e}'.format(*reaction['roi'])
-        if cd:
-            s2 = '{:4.2e}, {:4.2e}'.format(*reaction['roi_cd'])
-        s3 = ''
-        for lam, e in reaction['erg']:
-            s3 += '{}({}), '.format(e, lam)
-        s3 = s3[:-2]
-        reaction_table_s += '\n {} & {} & {} & {} \\\\ \n'.format(s0, s1, s2, s3)
-        reaction_table_s += '\\hline'
+    s0 = foil.label
+    s1 = time_change(foil.halflife)
+    s2 = '{:4.2e}, {:4.2e}'.format(*foil.roi)
+    s3 = '{}({}), '.format(foil.erg, foil.BR)
+    reaction_table_s += '\n {} & {} & {} & {} \\\\ \n'.format(s0, s1, s2, s3)
+    reaction_table_s += '\\hline'
 
     # format the template with all of the strings
     blanks = [title_s, power, t_irrad, t_wait, A_rem, irrad_s, activity_plot_s, reaction_s, reaction_table_s]
     single_foil = tex_template.format(*blanks)
-    if cd:
-        filename = title.lower() + '_cd.tex'
-    else:
-        filename = title.lower() + '.tex'
-    with open(filename, 'w+') as F:
+    filename = foil.plotname + '_{}.tex'.format(experimentname)
+    with open('tex/' + filename, 'w+') as F:
         F.write(single_foil)
     return
 

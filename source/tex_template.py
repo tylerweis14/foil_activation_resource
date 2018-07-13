@@ -18,7 +18,11 @@ Total Activity at Removal: {:4.2e} $\\mu Ci$
 
 \\begin{{figure}}[!ht]
    \\centering
-   \\subfloat[][Position \\#1]{{\\includegraphics[width=.4\\textwidth]{{{}}}}}\\quad
+{}
+\\end{{figure}}
+
+\\begin{{figure}}[!ht]
+   \\centering
 {}
 \\end{{figure}}
 

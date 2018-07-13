@@ -48,8 +48,7 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
         R[1] += quad(reaction_rate, e[i], e[i+1], args=(phi, foil.func, cd))[0]
     R[0] = 0
 
-    # TODO - revisit and fix this
-    # plot_xs(reaction_names, reaction_list, phi, cd)
+    plot_xs(foil, phi, cd)
 
     def decay(N, t, lam, t_i, R, P):
         '''

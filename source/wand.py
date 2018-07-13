@@ -12,14 +12,18 @@ class Wand(object):
     def __init__(self, name, mat, cd, masses, t_i, t_w, counting_time, P, experimentname):
         self.name = name
         self.mat = mat
+        self.foil = foils[self.mat]
         self.cd = cd
-        self.masses = masses
+        self.masses = self.estimate_masses() if masses == 'estimate' else masses
         self.t_i = t_i
         self.t_w = t_w
         self.counting_time = counting_time
         self.P = P
         self.experimentname = experimentname
         self.t_f = self.calc_t_f()
+
+    def estimate_masses(self):
+        return np.repeat((self.foil.rho / 7.31) * 1.1, 4)
 
     def calc_t_f(self):
         return self.t_i + self.t_w + (4 * self.counting_time) + 1
@@ -33,7 +37,7 @@ class Wand(object):
         for i, m in enumerate(self.masses):
             t_ci = self.t_w + (i * self.counting_time)
             t_cf = self.t_w + ((i + 1) * self.counting_time)
-            count, act_rem, act_count = activity_calc(foils[self.mat], m, self.P,
+            count, act_rem, act_count = activity_calc(self.foil, m, self.P,
                                                       self.t_i, t_ci, t_cf, self.t_f, self.cd,
                                                       plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1),
                                                       node=i+1, experimentname=self.experimentname)
@@ -42,9 +46,9 @@ class Wand(object):
             self.counts[i] = count
         print('Removal Activity:  {:4.2e}  uCi'.format(self.removal_activity))
         if write:
-            write_single_foil(self.name, self.P, self.t_i, self.t_w, self.counting_time,
+            write_single_foil(foils[self.mat], self.P, self.t_i, self.t_w, self.counting_time,
                               self.removal_activity, self.counting_activities, self.masses,
-                              self.mat, self.counts)
+                              self.counts, self.experimentname)
 
     def package_data(self):
         data = {}

@@ -585,21 +585,5 @@ U['reactions']['n,total_fission']['plotname'] = 'u_n,total_fission'
 
 # all foils
 foils = {}
-foils['Al'] = Al
-foils['Rh'] = Rh
-foils['In'] = In
 foils['Au'] = Au
 foils['U'] = U
-foils['Sc'] = Sc
-foils['Ti'] = Ti
-foils['Fe'] = Fe
-foils['Ni'] = Ni
-foils['Zr'] = Zr
-foils['Mn'] = Mn
-foils['Lu'] = Lu
-foils['Eu'] = Eu
-foils['Dy'] = Dy
-foils['Ir'] = Ir
-foils['Cr'] = Cr
-foils['Ca'] = Ca
-foils['Ti'] = Ti

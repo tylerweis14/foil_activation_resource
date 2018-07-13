@@ -29,31 +29,30 @@ def plot_activities(foil, t, activity, experimentname, node):
     return
 
 
-def plot_xs(reaction_names, reaction_list, phi, cd):
+def plot_xs(foil, phi, cd):
 
-    for name, reaction in zip(reaction_names, reaction_list):
-        fig = plt.figure(1)
-        ax = fig.add_subplot(111)
-        ax.set_xlabel('Energy (eV)')
-        ax.set_ylabel('$\sigma$ ($b$)')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-    
-        ax.set_xlim(1E-5, 1E9)
-    
-        # plot total activity
-        x = np.logspace(-5, 9, 1000)
-        xs = reaction['func']
-        y = xs(x)
-        y2 = xs(x) * phi(x) * cd(x)
-    
-        ax.set_ylim(1E-5 * max(y), 10 * max(y))
-    
-        ax.plot(x, y, 'k', label='XS PLOT')
-        ax.plot(x, y2, 'r', label='XS PLOT')
-    
-        plt.legend()
-        figname = 'plot/' + name + '.png'
-        plt.savefig(figname, dpi=300)
-        plt.close(fig)
+    fig = plt.figure(11)
+    ax = fig.add_subplot(111)
+    ax.set_xlabel('Energy (eV)')
+    ax.set_ylabel('$\sigma$ ($b$)')
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+
+    ax.set_xlim(1E-5, 1E9)
+
+    # plot total activity
+    x = np.logspace(-5, 9, 1000)
+    xs = foil.func
+    y = xs(x)
+    y2 = xs(x) * phi(x) * cd(x)
+
+    ax.set_ylim(1E-5 * max(y), 10 * max(y))
+
+    ax.plot(x, y, 'k', label='XS PLOT')
+    ax.plot(x, y2, 'r', label='XS PLOT')
+
+    plt.legend()
+    figname = 'plot/' + foil.plotname + '.png'
+    plt.savefig(figname, dpi=300)
+    plt.close(fig)
     return
