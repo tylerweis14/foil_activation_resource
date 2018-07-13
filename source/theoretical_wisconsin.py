@@ -52,7 +52,7 @@ def run(rerun_all, dataname):
     experiment_temp = experiment_template.split('SPLIT')
     foil_s = ''
     for f in foils_irradiated:
-        foil_s += '\\include{{source/{}}}\n'.format(foils[f].plotname + '_' + experimentname + '.tex')
+        foil_s += '\\include{{tex/{}}}\n'.format(foils[f].plotname + '_' + experimentname + '.tex')
     experiment_tex = experiment_temp[0] + foil_s + experiment_temp[1]
     with open(experimentname + '.tex', 'w+') as F:
         F.write(experiment_tex)
