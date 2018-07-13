@@ -39,10 +39,10 @@ class Reaction(object):
 
     def parse_text(self):
         reac, r_num = self.reactant.split('-')
-        bypr, b_num = self.reactant.split('-')
+        bypr, b_num = self.byproduct.split('-')
         cd_s = ' Cd' if self.cd else ''
         reaction = self.reaction if self.reaction not in ['n,gamma', 'n,alpha'] else 'n,$\gamma$' if self.reaction != 'n,alpha' else 'n,$\\alpha$'
-        label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, reaction, b_num, reac, cd_s)
+        label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, reaction, b_num, bypr, cd_s)
         cd_s = '_Cd' if self.cd else ''
         plotname = '{}({}){}{}'.format(self.reactant, self.reaction, self.byproduct, cd_s)
         return label, plotname
@@ -71,7 +71,7 @@ class Reaction(object):
 
 foils['In'] = Reaction('In-115', 'n,gamma', 'In-116', False, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
 # foils['InCd'] = Reaction('In-115', 'n,gamma', 'In-116', True, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
-foils['Mo'] = Reaction('Mo-98', 'n,gamma', 'Mo-98', False, 95.95, 10.28, '42-Mo-98(n,&gamma;).txt', 66*3600, 0.2429, 740, 0.12, -1)
+foils['Mo'] = Reaction('Mo-98', 'n,gamma', 'Mo-99', False, 95.95, 10.28, '42-Mo-98(n,&gamma;).txt', 66*3600, 0.2429, 740, 0.12, -1)
 foils['Zn'] = Reaction('Zn-64', 'n,p', 'Cu-64', False, 65.38, 7.14, '30-Zn-64(n,p).txt', 61.9*3600, 0.492, 1345.77, 0.00475, -1)
 foils['Cu'] = Reaction('Cu-63', 'n,gamma', 'Cu-64', False, 63.546, 8.96, '29-Cu-63(n,&gamma;).txt', 61.9*3600, 0.6915, 1345.77, 0.00475, -1)
 foils['Mg'] = Reaction('Cu-24', 'n,p', 'Na-24', False, 24.305, 1.738, '12-Mg-24(n,p).txt', 15.03*3600, 0.79, 1368.626, 0.999936, -1)

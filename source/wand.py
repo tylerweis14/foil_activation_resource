@@ -14,7 +14,12 @@ class Wand(object):
         self.mat = mat
         self.foil = foils[self.mat]
         self.cd = cd
-        self.masses = self.estimate_masses() if masses == 'estimate' else masses
+        if type(masses) in [float, int]:
+            self.masses = np.repeat(masses, 4)
+        elif masses == 'estimate':
+            self.masses = self.estimate_masses()
+        else:
+            self.masses = masses
         self.t_i = t_i
         self.t_w = t_w
         self.counting_time = counting_time

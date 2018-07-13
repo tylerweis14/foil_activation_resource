@@ -2,9 +2,10 @@ experiment_template='''\\documentclass[a4paper, 11pt]{article}
 \\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
 \\usepackage{fullpage} % changes the margin
 \\usepackage{graphicx}
-\\usepackage{subfig}
 \\usepackage{amsmath}
 \\usepackage{hyperref}
+\\usepackage{caption}
+\\usepackage{subcaption}
 \\hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -21,6 +22,22 @@ experiment_template='''\\documentclass[a4paper, 11pt]{article}
 \\hfill Kansas State University \\\\
 
 \\vspace{0.005\\textheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Principle Reactions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\section*{Plot}
+
+
+\\begin{figure}[!ht]
+   \\centering
+   \\includegraphics[width=1.0\\textwidth]{SPLIT}
+   \\label{fig:amalgamated}
+\\end{figure}
+
+
+
+\\newpage
 
 
 SPLIT

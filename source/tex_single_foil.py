@@ -25,29 +25,31 @@ def write_single_foil(foil, power, t_irrad, t_wait, t_count, A_rem, A_count, mas
     title_s = foil.label
     irrad_s = ''
     for i in range(4):
-        irrad_s += '\n {} & {} & {} & {:4.2e} & {:4.2e}\\\\ \n'.format(i+1, masses[i], t_count, A_count[i], counts[i])
+        err = (np.sqrt(counts[i]) / counts[i]) * 100
+        irrad_s += '\n {} & {:4.2f} & {:4.2e} & {:4.2e} & {:6.4f} \\\\ \n'.format(i+1, masses[i], A_count[i], counts[i], err)
         irrad_s += '\\hline'
 
-    activity_plot = 'source/plot/' + foil.plotname + '_' + experimentname + '1' + '.png'
+    activity_plot = 'plot/' + foil.plotname + '_' + experimentname + '1'
 
-    p = 'source/plot/' + foil.plotname + '.png'
-    reaction_s = '   \\includegraphics[width=.4\\textwidth]{{{}}} \n'.format(p)
-    activity_plot_s = '   \\includegraphics[width=.4\\textwidth]{{{}}} \n'.format(activity_plot)
+    p = 'plot/' + foil.plotname
+    reaction_s = '   \\includegraphics[width=.8\\textwidth]{{{}}} \n'.format(p)
+    activity_plot_s = '   \\includegraphics[width=.8\\textwidth]{{{}}} \n'.format(activity_plot)
 
     # reaction table
     reaction_table_s = ''
     s0 = foil.label
     s1 = time_change(foil.halflife)
     s2 = '{:4.2e}, {:4.2e}'.format(*foil.roi)
-    s3 = '{}({}), '.format(foil.erg, foil.BR)
+    s3 = '{}({})'.format(foil.erg, foil.BR)
     reaction_table_s += '\n {} & {} & {} & {} \\\\ \n'.format(s0, s1, s2, s3)
     reaction_table_s += '\\hline'
 
     # format the template with all of the strings
-    blanks = [title_s, power, t_irrad, t_wait, A_rem, irrad_s, activity_plot_s, reaction_s, reaction_table_s]
+    blanks = [title_s, power, time_change(t_irrad), time_change(t_wait), time_change(t_count),
+              A_rem, irrad_s, activity_plot_s, reaction_s, reaction_table_s]
     single_foil = tex_template.format(*blanks)
     filename = foil.plotname + '_{}.tex'.format(experimentname)
-    with open('tex/' + filename, 'w+') as F:
+    with open('plot/' + filename, 'w+') as F:
         F.write(single_foil)
     return
 

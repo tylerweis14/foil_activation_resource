@@ -44,12 +44,10 @@ def plot_xs(foil, phi, cd):
     x = np.logspace(-5, 9, 1000)
     xs = foil.func
     y = xs(x)
-    y2 = xs(x) * phi(x) * cd(x)
 
-    ax.set_ylim(1E-5 * max(y), 10 * max(y))
+    ax.set_ylim(1E-8 * max(y), 10 * max(y))
 
-    ax.plot(x, y, 'k', label='XS PLOT')
-    ax.plot(x, y2, 'r', label='XS PLOT')
+    ax.plot(x, y, 'k')
 
     plt.legend()
     figname = 'plot/' + foil.plotname + '.png'
