@@ -41,7 +41,8 @@ class Reaction(object):
         reac, r_num = self.reactant.split('-')
         bypr, b_num = self.reactant.split('-')
         cd_s = ' Cd' if self.cd else ''
-        label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, self.reaction, b_num, reac, cd_s)
+        reaction = self.reaction if self.reaction != 'n,gamma' else 'n,$\gamma$'
+        label = '$^{{{}}}${}({})$^{{{}}}${}{}'.format(r_num, reac, reaction, b_num, reac, cd_s)
         cd_s = '_Cd' if self.cd else ''
         plotname = '{}({}){}{}'.format(self.reactant, self.reaction, self.byproduct, cd_s)
         return label, plotname
@@ -69,7 +70,7 @@ class Reaction(object):
         return l, r
 
 foils['In'] = Reaction('In-115', 'n,gamma', 'In-116', False, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
-foils['InCd'] = Reaction('In-115', 'n,gamma', 'In-116', True, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
+# foils['InCd'] = Reaction('In-115', 'n,gamma', 'In-116', True, 114.818, 7.31, '49-In-115(n,&gamma;).txt', 54*60, 0.9572, 1293, 0.8, -1)
 foils['Mo'] = Reaction('Mo-98', 'n,gamma', 'Mo-98', False, 95.95, 10.28, '42-Mo-98(n,&gamma;).txt', 66*3600, 0.2429, 740, 0.12, -1)
 foils['Zn'] = Reaction('Zn-64', 'n,p', 'Cu-64', False, 65.38, 7.14, '30-Zn-64(n,p).txt', 61.9*3600, 0.492, 1345.77, 0.00475, -1)
 foils['Cu'] = Reaction('Cu-63', 'n,gamma', 'Cu-64', False, 63.546, 8.96, '29-Cu-63(n,&gamma;).txt', 61.9*3600, 0.6915, 1345.77, 0.00475, -1)

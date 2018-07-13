@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc, rcParams
 
-from cross_sections import foils, Cd
+from reaction import foils
 from flux_spectrum import Flux
 from triga_spectrum import triga_spectrum
 
@@ -40,30 +40,6 @@ x = np.logspace(-5, 8, 1000)
 y = triga_spectrum(x)
 ax1.plot(x, y, 'k', label='$\Phi$')
 
-reactions = [foils['Au']['reactions']['n,gamma'],
-             foils['In']['reactions']['n,gamma'],
-             foils['Al']['reactions']['n,alpha'],
-             foils['Rh']['reactions']['n,inelastic'],
-             foils['U']['reactions']['n,total_fission'],
-             foils['Cu']['reactions']['n,gamma'],
-             foils['Zn']['reactions']['n,p'],
-             foils['Zr']['reactions']['n,2n'],
-             foils['Ni']['reactions']['n,p'],
-             foils['Ti']['reactions']['n,p'],
-             foils['Sc']['reactions']['n,gamma'],
-             foils['Fe']['reactions']['n,p'],
-             foils['Mg']['reactions']['n,p'],
-             foils['Mn']['reactions']['n,gamma'],
-             #foils['Mo']['reactions']['n,gamma'],
-             foils['Eu']['reactions']['n,gamma'],
-             foils['Ir']['reactions']['n,gamma'],
-             foils['Lu']['reactions']['n,gamma']]
-
-foilnames = ['$^{197}$Au', '$^{115}$In', '$^{27}$Al', '$^{103}$Rh', '$^{235}$U',
-             '$^{63}$Cu', '$^{64}$Zn','$^{90}$Zr','$^{58}$Ni','$^{48}$Ti',
-             '$^{45}$Sc', '$^{56}$Fe', '$^{24}$Mg','$^{55}$Mn',#'$^{98}$Mo',
-             '$^{151}$Eu', '$^{191}$Ir', '$^{176}$Lu']
-
 colors = ['green', 'gold', 'red', 'blue', 'indigo', 'fuchsia', 'black', 
           'coral','slategrey', 'darkcyan', 'blueviolet', 'lawngreen',
           'lightsalmon', 'maroon', 'cyan','papayawhip', 'chocolate',
@@ -71,21 +47,40 @@ colors = ['green', 'gold', 'red', 'blue', 'indigo', 'fuchsia', 'black',
 linestyles = [':', '--', '-', ':', '-.', ':','--', '-',':','-.','-',':','--',
               '-.',':','--','-.',':']
 scaling_factor = 5e14
-heights = np.array([1e-7, 1e-8, 1e-4, 1e-3, 1e-9, 1e-10,1e-2,1e-1,1e-5,1,
-                    1.5,10,70,100,10,1.5e-1,1e-11,1e-12]) * scaling_factor
+res_heights = np.array([1e3, 1e4, 1e5, 1e6, 1e7, 1e14, 1e15, 1e16, 1e17]) * 0.5
+thresh_heights = np.geomspace(1e10, 1e17, 8)
 
-for i, reaction in enumerate(reactions):
+resonance = []
+threshold = []
+for key, foil in foils.items():
+    if foil.classification == 'resonance':
+        resonance.append(foil)
+    else:
+        threshold.append(foil)
+resonance = sorted(resonance, key=lambda x: -(np.log(x.roi[1]) - np.log(x.roi[0])))
+threshold = sorted(threshold, key=lambda x: np.log(x.roi[1]) - np.log(x.roi[0]))
+
+for i, foil in enumerate(resonance):
     # region
-    roi = reaction['roi']
-    l = reaction['label']
-    f = foilnames[i]
-    ax1.plot(roi, [heights[i]]*2, color=colors[i], linewidth=2.0)
-    ax1.text(roi[0]*0.4, heights[i]*2, f+' '+l)
+    ax1.plot(foil.roi, [res_heights[i]]*2, color=colors[i], linewidth=2.0)
+    ax1.text(foil.roi[0]*0.4, res_heights[i]*2, foil.label)
 
     # cross section
-    xs = reaction['func']
-    region = reaction['region']
+    xs = foil.func
+    region = foil.region
     reg = np.geomspace(*region, 1000)[:-1]
-    ax2.plot(reg, xs(reg), color=colors[i], label=f+' '+l, linestyle=linestyles[i])
+    ax2.plot(reg, xs(reg), color=colors[i], label=foil.label, linestyle=linestyles[i])
+
+for i, foil in enumerate(threshold):
+    l = len(resonance)
+    # region
+    ax1.plot(foil.roi, [thresh_heights[i]]*2, color=colors[i+l], linewidth=2.0)
+    ax1.text(foil.roi[0]*0.1, thresh_heights[i]*2, foil.label)
+
+    # cross section
+    xs = foil.func
+    region = foil.region
+    reg = np.geomspace(*region, 1000)[:-1]
+    ax2.plot(reg, xs(reg), color=colors[i+l], label=foil.label, linestyle=linestyles[i+l])
 
 fig.savefig('plot/amalgamated.png', dpi=500)
