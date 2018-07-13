@@ -76,7 +76,7 @@ Mg['reactions']['n,p']['label'] = r'($n,p$)'
 Mg['reactions']['n,p']['erg'] = [-1,1]  # keV (placeholder)
 Mg['reactions']['n,p']['plotname'] = 'mg_n,p'
 '''
-
+'''
 # aluminum
 Al = {}
 Al['M'] = 26.9815385  # g/mol
@@ -121,7 +121,8 @@ Al['reactions']['n,gamma']['halflife'] = 2.246 * 60  # s
 Al['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Al['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Al['reactions']['n,gamma']['plotname'] = 'al_n,gamma'
-
+'''
+'''
 # calcium
 Ca = {}
 Ca['M'] = 40.078  # g/mol
@@ -139,7 +140,8 @@ Ca['reactions']['n,gamma']['halflife'] = 162.67 * 24 * 60 * 60  # s
 Ca['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Ca['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Ca['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
-
+'''
+'''
 # scandium
 Sc = {}
 Sc['M'] = 44.955910  # g/mol
@@ -157,8 +159,8 @@ Sc['reactions']['n,gamma']['halflife'] = 43.72 *60 * 60  # s
 Sc['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Sc['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Sc['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
-
-
+'''
+'''
 # titanium
 Ti = {}
 Ti['M'] = 47.867  # g/mol
@@ -176,9 +178,9 @@ Ti['reactions']['n,p']['halflife'] = 43.7 * 60 * 60 #s
 Ti['reactions']['n,p']['label'] = r'($n,p$)'
 Ti['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ti['reactions']['n,p']['plotname'] = 'ti_n,p'
-
+'''
 #TODO Ti46,47
-
+'''
 # chromium
 Cr = {}
 Cr['M'] = 51.9961  # g/mol
@@ -196,8 +198,8 @@ Cr['reactions']['n,gamma']['halflife'] = r  # s
 Cr['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Cr['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Cr['reactions']['n,gamma']['plotname'] = 'sc_n,gamma'
-
-
+'''
+'''
 # manganese
 Mn = {}
 Mn['M'] = 54.938044  # g/mol
@@ -215,7 +217,8 @@ Mn['reactions']['n,gamma']['halflife'] = 2.5789 *60 * 60  # s
 Mn['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Mn['reactions']['n,gamma']['erg'] = [(1, 1780)]  # keV (placeholder)
 Mn['reactions']['n,gamma']['plotname'] = 'mn_n,gamma'
-
+'''
+'''
 # iron
 Fe = {}
 Fe['M'] = 55.845  # g/mol
@@ -247,7 +250,9 @@ Fe['reactions']['n,gamma']['erg'] = [(1,1)]  # keV (placeholder)
 Fe['reactions']['n,gamma']['plotname'] = 'fe_n,gamma'
 
 #TODO Fe54
+'''
 
+'''
 # nickel
 Ni = {}
 Ni['M'] = 58.6934  # g/mol
@@ -265,7 +270,7 @@ Ni['reactions']['n,p']['halflife'] = 70.86 * 24 * 60 * 60 #s
 Ni['reactions']['n,p']['label'] = r'($n,p$)'
 Ni['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Ni['reactions']['n,p']['plotname'] = 'ni_n,p'
-
+'''
 '''
 # copper
 Cu = {}
@@ -304,7 +309,7 @@ Zn['reactions']['n,p']['label'] = r'($n,p$)'
 Zn['reactions']['n,p']['erg'] = [-1,1]#KeV (placeholder)
 Zn['reactions']['n,p']['plotname'] = 'zn_n,p'
 '''
-
+'''
 # zirconium
 Zr = {}
 Zr['M'] = 91.224  # g/mol
@@ -322,7 +327,7 @@ Zr['reactions']['n,2n']['halflife'] = 78.41 *60 * 60  # s
 Zr['reactions']['n,2n']['label'] = r'($n,2n$)'
 Zr['reactions']['n,2n']['erg'] = [(1, 1780)]  # keV (placeholder)
 Zr['reactions']['n,2n']['plotname'] = 'zr_n,2n'
-
+'''
 '''
 # molybdenum
 Mo = {}
@@ -343,7 +348,7 @@ Mo['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Mo['reactions']['n,gamma']['plotname'] = 'mo_n,gamma'
 '''
 
-
+'''
 # rhodium
 Rh = {}
 Rh['M'] = 102.90550  # g/mol
@@ -385,8 +390,8 @@ Rh['reactions']['n,inelastic']['plotname'] = 'rh_n,inelastic'
 # Rh['reactions']['n,p']['func'] = extract('45-Rh-103(n,inelastic).txt')
 # Rh['reactions']['n,p']['halflife'] = 39.35 * 60 * 60 * 24  # s
 # Rh['reactions']['n,p']['label'] = r"($n,p$)"
-
-
+'''
+'''
 # indium
 In = {}
 In['M'] = 114.818  # g/mol
@@ -418,7 +423,8 @@ In['reactions']['n,inelastic']['halflife'] = 4.36 * 60 * 60  # s
 In['reactions']['n,inelastic']['label'] = r"($n,n'$)"
 In['reactions']['n,inelastic']['erg'] = [(0.5, 335)]  # intensity, keV
 In['reactions']['n,inelastic']['plotname'] = 'in_n,inelastic'
-
+'''
+'''
 # Europium
 Eu = {}
 Eu['M'] = 151.964  # g/mol
@@ -436,7 +442,8 @@ Eu['reactions']['n,gamma']['halflife'] = 13.537 * 365 * 24 * 60 * 60  # s
 Eu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Eu['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Eu['reactions']['n,gamma']['plotname'] = 'Eu_n,gamma'
-
+'''
+'''
 # dysprosium
 Dy = {}
 Dy['M'] = 162.5  # g/mol
@@ -454,7 +461,8 @@ Dy['reactions']['n,gamma']['halflife'] = 2.334 * 60 * 60  # s
 Dy['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Dy['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Dy['reactions']['n,gamma']['plotname'] = 'dy_n,gamma'
-
+'''
+'''
 # lutetium
 Lu = {}
 Lu['M'] = 174.9668  # g/mol
@@ -472,7 +480,8 @@ Lu['reactions']['n,gamma']['halflife'] = 6.6475 * 24 * 60 * 60  # s
 Lu['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Lu['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Lu['reactions']['n,gamma']['plotname'] = 'lu_n,gamma'
-
+'''
+'''
 # iridium
 Ir = {}
 Ir['M'] = 174.9668  # g/mol
@@ -490,6 +499,7 @@ Ir['reactions']['n,gamma']['halflife'] = 73.827 * 24 * 60 * 60  # s
 Ir['reactions']['n,gamma']['label'] = r'($n,\gamma$)'
 Ir['reactions']['n,gamma']['erg'] = [(1, 1)]  # keV (placeholder)
 Ir['reactions']['n,gamma']['plotname'] = 'ir_n,gamma'
+'''
 '''
 # tungsten
 W = {}
