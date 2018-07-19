@@ -28,7 +28,7 @@ class Wand(object):
         self.t_f = self.calc_t_f()
 
     def estimate_masses(self):
-        return np.repeat((self.foil.rho / 7.31) * 1.1, 4)
+        return np.repeat((self.foil.rho / 7.31) * 2.1, 4)
 
     def calc_t_f(self):
         return self.t_i + self.t_w + (4 * self.counting_time) + 1
