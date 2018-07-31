@@ -12,9 +12,10 @@ dataname = 'theoretical_wisconsin.txt'
 
 
 class Theoretical(object):
-    def __init__(self, experimentname, irradiations):
+    def __init__(self, experimentname, irradiations, detector='ksu'):
         self.experimentname = experimentname
         self.dataname = 'theoretical_data/theoretical_' + experimentname + '.txt'
+        self.detector = detector
         try:
             with open(dataname, 'rb') as F:
                 self.data = pickle.load(F)
@@ -23,7 +24,7 @@ class Theoretical(object):
 
         self.foils_irradiated = []
         for data in irradiations:
-            wand = Wand(*data, experimentname)
+            wand = Wand(*data, detector, experimentname)
             wand.irradiate(True)
             self.data.update(wand.package_data())
             self.foils_irradiated.append(data[1])

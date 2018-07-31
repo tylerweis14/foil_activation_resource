@@ -62,15 +62,11 @@ def amalgamate(experimentname, element_names):
     i = 0
     new_resonance = []
     for r in range(len(resonance)):
-        print(new_resonance)
-        print(res_heights[i])
         new_resonance.append(res_heights[i])
         if (r+1) % 2:
             i += 1
         i *= -1
-        print(i)
     res_heights = np.sort(new_resonance)
-    print(res_heights)
 
     for i, foil in enumerate(resonance):
         # cross section

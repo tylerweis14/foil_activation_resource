@@ -9,7 +9,7 @@ class Wand(object):
     '''
     This is a wand.
     '''
-    def __init__(self, name, mat, cd, masses, t_i, t_w, counting_time, P, experimentname):
+    def __init__(self, name, mat, cd, masses, t_i, t_w, counting_time, P, detector, experimentname):
         self.name = name
         self.mat = mat
         self.foil = foils[self.mat]
@@ -23,6 +23,7 @@ class Wand(object):
         self.t_i = t_i
         self.t_w = t_w
         self.counting_time = counting_time
+        self.detector = detector
         self.P = P
         self.experimentname = experimentname
         self.t_f = self.calc_t_f()
@@ -43,7 +44,7 @@ class Wand(object):
             t_ci = self.t_w + (i * self.counting_time)
             t_cf = self.t_w + ((i + 1) * self.counting_time)
             count, act_rem, act_count = activity_calc(self.foil, m, self.P,
-                                                      self.t_i, t_ci, t_cf, self.t_f, self.cd,
+                                                      self.t_i, t_ci, t_cf, self.t_f, self.detector, self.cd,
                                                       plotname='plot/{}{}_activity.png'.format(self.mat.lower(), i + 1),
                                                       node=i+1, experimentname=self.experimentname)
             self.removal_activity += act_rem

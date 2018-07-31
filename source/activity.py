@@ -7,7 +7,7 @@ from triga_spectrum import nodal_spectra
 from hpge import hpge_efficiency
 
 
-def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickness=0.05,
+def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, detector, cd_covered=False, cd_thickness=0.05,
                   plotname='decay.png', node=1, experimentname='theoretical'):
     '''
     Stuff.
@@ -75,7 +75,7 @@ def activity_calc(foil, m, P, t_i, t_ci, t_cf, t_f, cd_covered=False, cd_thickne
     act_fun = interp1d(times, activities[:, 1], bounds_error=False, fill_value=0)
     raw = quad(act_fun, t_ci, t_cf)[0]
     detected = raw * foil.BR
-    detected *= hpge_efficiency(foil.erg)
+    detected *= hpge_efficiency[detector](foil.erg)
     counts = detected
 
     # Bq to uCi

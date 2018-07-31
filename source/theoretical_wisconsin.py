@@ -18,4 +18,4 @@ irradiation_data.append(['aluminum', 'Al', False, np.array([3.5, 3.5, 3.5, 3.5])
 irradiation_data.append(['titanium', 'Ti1', False, np.array([5.5, 5.1, 5.1, 5.3]), 3600, 3600*1, 1800, 100])
 irradiation_data.append(['titanium', 'Ti2', False, np.array([5.5, 5.1, 5.1, 5.3]), 3600, 3600*1, 1800, 100])
 
-Theoretical('wisconsin', irradiation_data)
+Theoretical('wisconsin', irradiation_data, 'ksu')
