@@ -97,3 +97,6 @@ foils['Ir'] = Reaction('Ir-191', 'n,gamma', 'Ir-192', False, 174.9668, 9.841, '7
 foils['IrCd'] = Reaction('Ir-191', 'n,gamma', 'Ir-192', True, 174.9668, 9.841, '77-Ir-191(n,&gamma;).txt', 74.2*24*3600, 0.373, 317, 0.81, -1)
 foils['Au'] = Reaction('Au-197', 'n,gamma', 'Au-198', False, 196.96657, 19.32, '79-Au-197(n,&gamma;).txt', 2.7*3600*24 , 1.0, 412, 0.95, -1)
 foils['AuCd'] = Reaction('Au-197', 'n,gamma', 'Au-198', True, 196.96657, 19.32, '79-Au-197(n,&gamma;).txt', 2.7*3600*24 , 1.0, 412, 0.95, -1)
+
+foils['Ti1'] = Reaction('Ti-47', 'n,p', 'Sc-47', False, 47.867, 4.506, '22-Ti-47(n,p).txt', 3.422*24*3600, 0.0744, 160, 0.73, -1)
+foils['Ti2'] = Reaction('Ti-48', 'n,p', 'Sc-48', False, 47.867, 4.506, '22-Ti-48(n,p).txt', 43.67*3600, 0.7372, 983, 1.0, -1)
