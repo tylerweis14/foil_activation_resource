@@ -24,7 +24,7 @@ def plot_activities(foil, t, activity, experimentname, node):
     ax.plot(t, activity, 'k', label=foil.label)
 
     plt.legend()
-    plt.savefig('plot/' + foil.plotname + '_' + experimentname + str(node) + '.png', dpi=300)
+    plt.savefig('plot/' + foil.plotname + '_' + experimentname + str(node) + '.pdf')
     plt.close(fig)
     return
 
@@ -50,7 +50,7 @@ def plot_xs(foil, phi):
     ax.plot(x, y, 'k')
 
     plt.legend()
-    figname = 'plot/' + foil.plotname + '.png'
-    plt.savefig(figname, dpi=300)
+    figname = 'plot/' + foil.plotname + '.pdf'
+    plt.savefig(figname)
     plt.close(fig)
     return

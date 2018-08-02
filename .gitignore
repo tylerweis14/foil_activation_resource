@@ -7,3 +7,4 @@ __pycache__/
 plot/
 .png
 .tex
+plot/*.pdf

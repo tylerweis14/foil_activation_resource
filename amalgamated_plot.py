@@ -94,4 +94,4 @@ def amalgamate(experimentname, element_names, foil_library, source, P):
         reg = np.geomspace(*region, 1000)[:-1]
         ax2.plot(reg, xs(reg), color=colors[i+l], label=foil.label, linestyle=linestyles[i+l])
 
-    fig.savefig('plot/amalgamated_{}.png'.format(experimentname), dpi=500)
+    fig.savefig('plot/amalgamated_{}.pdf'.format(experimentname))
