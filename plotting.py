@@ -29,7 +29,7 @@ def plot_activities(foil, t, activity, experimentname, node):
     return
 
 
-def plot_xs(foil, phi, cd):
+def plot_xs(foil, phi):
 
     fig = plt.figure(11)
     ax = fig.add_subplot(111)

@@ -1,5 +1,4 @@
 import numpy as np
-from cross_sections import foils
 from tex_template import tex_template
 
 

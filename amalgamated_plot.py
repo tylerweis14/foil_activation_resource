@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rc, rcParams
-
-from reaction import foils
-from triga_spectrum import triga_spectrum
+from flux import select_flux_spectrum
 
 
-def amalgamate(experimentname, element_names):
+def amalgamate(experimentname, element_names, foil_library, source, P):
+    source_sf = 1
+    if source == 'triga_nebp':
+        source_sf = 1e-4
+
     # nice plotting
     rc('font', **{'family': 'serif'})
     rcParams['xtick.direction'] = 'out'
@@ -23,7 +25,7 @@ def amalgamate(experimentname, element_names):
     ax1.set_xscale('log')
     ax1.set_yscale('log')
     ax1.set_xlim(1E-5, 1E9)
-    ax1.set_ylim(1E2, 1E18)
+    ax1.set_ylim(1E2 * source_sf, 1E18 * source_sf)
     ax1.set_xlabel('Energy (eV)')
     ax1.set_ylabel('$\Phi$ ($cm^{-2}s^{-1}$)')
 
@@ -35,7 +37,8 @@ def amalgamate(experimentname, element_names):
 
     # flux
     x = np.logspace(-5, 8, 1000)
-    y = triga_spectrum(x)
+    flux = select_flux_spectrum(source, P)[2]
+    y = flux(x)
     ax1.plot(x, y, 'k', label='$\Phi$')
 
     colors = ['green', 'gold', 'red', 'blue', 'indigo', 'fuchsia', 'black',
@@ -47,7 +50,7 @@ def amalgamate(experimentname, element_names):
 
     resonance = []
     threshold = []
-    for key, foil in foils.items():
+    for key, foil in foil_library.items():
         if key in element_names:
             if foil.classification == 'resonance':
                 resonance.append(foil)
@@ -56,8 +59,8 @@ def amalgamate(experimentname, element_names):
     resonance = sorted(resonance, key=lambda x: -(np.log(x.roi[1]) - np.log(x.roi[0])))
     threshold = sorted(threshold, key=lambda x: np.log(x.roi[1]) - np.log(x.roi[0]))
 
-    res_heights = np.array([1e3, 1e4, 1e5, 1e6, 1e7, 1e14, 1e15, 1e16, 1e17]) * 0.5
-    thresh_heights = np.geomspace(1e10, 1e17, 8)
+    res_heights = np.array([1e3, 1e4, 1e5, 1e6, 1e7, 1e14, 1e15, 1e16, 1e17]) * 0.5 * source_sf
+    thresh_heights = np.geomspace(1e10, 1e17, 8) * source_sf
 
     i = 0
     new_resonance = []

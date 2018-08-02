@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# important stuffs
+plot/
+.png
+.tex
